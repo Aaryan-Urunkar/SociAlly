@@ -37,12 +37,12 @@ h2{
     padding-bottom:4%;
 }
 #ENROLL{
+    margin-top: 5em;
     display: flex;
     justify-content: center;
 }
 #ENROLL .btn{
-    margin-top: 5em;
-    width:30%;
+    width:100%;
     display: flex;
     justify-content: center;
     background-color: #265959;
@@ -70,8 +70,9 @@ h2{
     /*height:300px;*/
     display:flex;
     flex-direction: column;
-    justify-content: space-around;
+    
     padding-left:2%;
+    justify-content: space-around;
 }
 .right{
     width: 50%;
@@ -79,4 +80,10 @@ h2{
 }
 .right img{
     border-radius:10px;
+}
+a{
+    width:30%;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
 }
