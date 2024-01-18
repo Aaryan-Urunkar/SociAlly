@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inria+Sans&family=M+PLUS+2:wght@600&display=swap');
+body {
+  margin: 0;
+  width: 100vw;
+  overflow-x: hidden;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Fira Sans', sans-serif;
+}
+.animateRightDisabled {
+  transform: translateX(100%);
+  transition-property: all;
+  transition-duration: 1s;
+  transition-delay: 0.3s;
+  opacity: 0;
+}
+
+.animateLeftDisabled {
+  transform: translateX(-100%);
+  transition-property: all;
+  transition-duration: 1s;
+  transition-delay: 0.3s;
+  opacity: 0;
+}
+.animateRight {
+  opacity: 1;
+  transform: translateX(0%);
+}
+.animateLeft {
+  opacity: 1;
+  transform: translateX(0%);
+}
+
+/* Navbar Styling starts */
+
+.navbar {
+  text-align: center;
+  padding: 1.5rem 1rem 2rem 1rem;
+  background-color: #1b4242;
+}
+.navbar-brand {
+  font-family: 'M PLUS 2', sans-serif;
+  color: white;
+  font-size: 2rem;
+}
+.navbar-brand:hover {
+  color: white;
+}
+.navbar-brand span {
+  color: #30e5e5;
+}
+.navbar .nav-item button {
+  border: none; /*Button Styling and below this is the hover styling*/
+}
+.navbar .nav-item button:hover {
+  background-color: #086565;
+  color: white;
+}
+.nav-link:hover {
+  color: #30e5e5;
+}
+.nav-link {
+  color: white;
+}
+/* Navbar Styling Over */
+
+/* Section 1 styling */
+.section.default-bg {
+  padding: 2rem 0;
+}
+.default-bg {
+  background-color: #1b4242;
+}
+.white-bg {
+  background-color: white;
+}
+.main {
+  display: flex;
+  gap: 12rem;
+  margin: 5rem 2rem;
+}
+
+.info {
+  /*Contains both h1 and the article*/
+  flex-basis: 40%;
+  line-height: 1.8;
+}
+.main h1 {
+  color: white;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 3rem;
+}
+.content {
+  /*Contains only article*/
+  color: white;
+  margin-top: 4rem;
+}
+.main img {
+  height: 60%;
+}
+/* Section 1 styling over and section 2 styling starts */
+.section.white-bg .main {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row-reverse;
+}
+.section.white-bg .main img {
+  width: 45%;
+}
+.section.white-bg .main .content {
+  color: #1b4242;
+}
+.section.white-bg .main h1 {
+  color: #1b4242;
+}
+/* Section 2 styling over as many of the common features were already styled in section 1 */
+/* Section 3 aka goals section start */
+.our-goal {
+  padding: 6rem 2rem 2rem 2rem;
+  background-color: #1b4242;
+  margin-top: 3rem;
+}
+.our-goal h1 {
+  color: white;
+  text-align: center;
+}
+.features {
+  margin: 8rem 5rem;
+}
+#feature-box {
+  text-align: center;
+}
+#feature-heading {
+  color: white;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+.bi {
+  /*Bootstrap icon*/
+  color: #30e5e5;
+  font-size: 4rem;
+}
+.bi:hover {
+  color: #086565;
+}
+.feature-info {
+  /*Feature description*/
+  color: white;
+}
