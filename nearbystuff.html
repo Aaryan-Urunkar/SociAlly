@@ -9,8 +9,39 @@
     />
     <title>Where Do You Want To Volunteer Today?</title>
     <style>
+      @import url('https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@700&display=swap');
+      @import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inria+Sans&family=M+PLUS+2:wght@600&display=swap');
       body {
         background-color: #1b4242;
+      }
+      .navbar {
+        text-align: center;
+        padding: 1.5rem 1rem 2rem 1rem;
+        background-color: #1b4242;
+      }
+      .navbar-brand {
+        font-family: 'M PLUS 2', sans-serif;
+        color: white;
+        font-size: 2rem;
+      }
+      .navbar-brand:hover {
+        color: white;
+      }
+      .navbar-brand span {
+        color: #30e5e5;
+      }
+      .navbar .nav-item button {
+        border: none; /*Button Styling and below this is the hover styling*/
+      }
+      .navbar .nav-item button:hover {
+        background-color: #086565;
+        color: white;
+      }
+      .nav-link:hover {
+        color: #30e5e5;
+      }
+      .nav-link {
+        color: white;
       }
 
       .grid-container {
@@ -57,7 +88,6 @@
         color: red;
         margin-top: 20px;
       }
-      @import url('https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@700&display=swap');
 
       .header {
         display: flex;
@@ -169,18 +199,47 @@
     </script>
   </head>
   <body>
-    <div class="header">
-      <h1 style="font-family: 'Fira Sans', sans-serif">
-        Where Do You Want To Volunteer Today?
-      </h1>
-      <div>
-        <button onclick="redirectToPage('index.html')">Home</button>
-        <button onclick="redirectToPage('dashboard.html')">Dashboard</button>
-        <button onclick="redirectToPage('findgroup.html')">Find a Group</button>
-        <button onclick="redirectToPage('about.html')">About</button>
-        <button onclick="signOut()">Sign Out</button>
+    <nav class="navbar navbar-expand sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" style="font-family: 'Fira Sans', sans-serif">
+          Where Do You Want To Volunteer Today?
+        </a>
+
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <ul class="navbar-nav ms-auto mb-lg-0">
+          <li class="nav-item me-2">
+            <a class="nav-link active" aria-current="page" href="index.html"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item me-2">
+            <a class="nav-link" href="dashboard.html">Dashboard</a>
+          </li>
+          <li class="nav-item me-3">
+            <a class="nav-link" href="findYourGroup.html">Find a group</a>
+          </li>
+          <li class="nav-item me-4">
+            <a class="nav-link" href="about.html">About Us</a>
+          </li>
+          <li class="nav-item me-3">
+            <button type="button" class="btn btn-outline-light">
+              Sign out
+            </button>
+          </li>
+        </ul>
       </div>
-    </div>
+    </nav>
 
     <div class="search-box">
       <input
