@@ -1,3 +1,20 @@
+const user = (function(){
+    const userInfo = JSON.parse(localStorage.getItem('user'));
+
+    const getUsername =() => {return userInfo.username};
+    const getLocation =() => {return userInfo.location};
+
+    return {getUsername,getLocation}
+})();
+
+const setInfo = () =>{
+    const greetingName = document.querySelector('.greeting-name');
+    const location = document.querySelector('.location');
+
+    greetingName.textContent=`Good day, ${user.getUsername()}`;
+    location.innerHTML=`<i class="fa-solid fa-location-dot"> </i> ${user.getLocation()}`;
+}
+
 const navbar = (function(){
     const create = () => {
         const options = Array.from(document.getElementsByClassName('option'));
@@ -191,7 +208,7 @@ const groups = (function(){
         icon.classList.add('icon');
 
         //+ icon
-        //newCard.addEventListener('click', ()=>{window.open('../NGOsearchPage/nearbystuff.html')})
+        //newCard.addEventListener('click', ()=>{window.open('../groupSearchPage/nearbystuff.html')})
         icon.textContent="+";
 
 
@@ -209,7 +226,7 @@ const ngos = (function(){
         const panel = document.querySelector('.panel');
         const ngosPanel = document.createElement('div');
         ngosPanel.classList.add('ngos-panel');
-        //addGroups(groupsPanel);
+        //addNgos(ngosPanel);
         newNgoIcon(ngosPanel);
         panel.appendChild(ngosPanel);
     }
@@ -229,7 +246,7 @@ const ngos = (function(){
         icon.classList.add('icon');
 
         //+ icon
-        newCard.addEventListener('click', ()=>{window.open('../NGOsearchPage/nearbystuff.html')})
+        newCard.addEventListener('click', ()=>{document.location.assign('../NGOsearchPage/nearbystuff.html')})
         icon.textContent="+";
 
 
@@ -241,6 +258,6 @@ const ngos = (function(){
     return {create,remove}
 })();
 
-
+setInfo();
 navbar.create();
 stats.create();
