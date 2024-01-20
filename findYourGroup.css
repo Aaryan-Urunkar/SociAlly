@@ -105,7 +105,7 @@ input.list-group-item {
   align-self: center;
 }
 .hidden {
-  display: none;
+  display: none !important;
 }
 .groups {
   display: flex;
@@ -138,4 +138,14 @@ input.list-group-item {
 .group-list-item span {
   text-align: right;
   padding-right: 0.5rem;
+}
+.back-btn {
+  width: 7%;
+  align-self: center;
+}
+.participants {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
