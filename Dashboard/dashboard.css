@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inria+Sans&display=swap');
+
+:root {
+    --background:#1b4141;
+    --primary:#96e7e7;
+    --primary-hover:#78afaf;
+    --secondary:#188b8b;
+    --secondary-hover:#116464;
+    --accent:#30e5e5;
+    --font-color:#ECF8F8;
+    --font-color-deselect:rgba(236, 248, 248, 0.53);
+    --option:rgba(24, 139, 139, 0.3);
+    --option-selected:rgba(24, 139, 139, 1);
+}
+
+
+html, body {
+    margin: 0;
+    height: 100%;
+    background-color: var(--background);
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.top-bar {
+    margin-top: 1vh;
+    width: 90vw;
+}
+
+.user-info {
+    font-family: 'Fira Sans', sans-serif;
+    width: 25%;
+    display: flex;
+    gap:1vw;
+    align-items: center;
+}
+
+.pfp {
+    font-size: 6rem;
+    grid-row: 1/3;
+}
+
+.greeting-name {
+    text-align: start;
+    color: var(--font-color);
+    font-size: 2rem;
+}
+
+.location {
+    color:rgba(255, 255, 255,0.43);
+}
+
+.navbar {
+    margin-top: 7vh;
+    display: flex;
+    flex-wrap: wrap;
+    width: 25%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    justify-content: space-between;
+    font-size: 1.2rem;
+}
+
+.option {
+    background-color: var(--option);
+    border-radius: 1rem;
+    padding: 1rem;
+    cursor: pointer;
+    color: var(--font-color-deselect);
+    transition: all 300ms ease-in-out;
+}
+
+.option:hover, .selected {
+    background-color: var(--option-selected);
+    color: var(--font-color);
+}
+
+.panel {
+    width: 80vw;
+    padding:3rem;
+    height: 60vh;
+}
+
+
+/* Stats panel */
+.stats-panel {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: repeat(2,1fr);
+    padding-left: 7%;
+    height: 100%;
+    width: 100%;
+}
+
+.level-frame {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 1.5rem;
+    width: 70%;
+    color: var(--font-color);
+}
+
+.level-card {
+    font-family: 'Inria Sans', sans-serif;
+    background-color: var(--option);
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: repeat(3,1fr);
+    padding: 1rem;
+    padding-right: 1.5rem;
+    border-radius: 1rem;
+    margin-top: 0.5rem;
+} 
+
+.level-indicator {
+    grid-row: 1/4;
+    font-size: 5rem;
+    color: var(--primary);
+    width: fit-content;
+    padding-left: 1rem;
+}
+
+.level-text {
+    color: var(--font-color);
+    font-weight: 500;
+    text-align: start;
+    font-size: 1.5rem;
+}
+
+.xp-bar {
+    width:100%;
+    background-color: rgba(255, 255, 255, 0.505);
+    font-size: 1rem;
+    border: none;
+    border-radius: 6px;
+}
+
+.xp {
+    font-size: 1rem;
+    color: rgba(217, 217, 217, 1);
+}
+
+
+.skill-frame,.contribution-frame,.social-frame {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 1.5rem;
+    width: 70%;
+    color: var(--font-color);
+}
+
+.skill-card,.contribution-card,.social-card {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.505);
+    font-family: 'Inria Sans', sans-serif;
+    background-color: var(--option);
+    padding: 1rem;
+    border-radius: 1rem;
+    padding-top: 3.2rem;
+    padding-bottom: 3.2rem;
+    padding-left: 1.5rem;
+}
+
+.social-card {
+    color: var(--font-color);
+    display: flex;
+    justify-content: center;
+    font-size: 3rem;
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    gap: 1rem;
+}
+
+.fa-brands {
+    transition: color 300ms ease-in-out;
+}
+
+.fa-instagram:hover {
+    color: #c13584;
+}
+
+.fa-twitter:hover {
+    color: #1DA1F2;
+}
+
+.fa-github:hover {
+    color:#333;
+}
+
+
+/* Groups&Ngos panel */
+.groups-panel,.ngos-panel {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    padding: 20px;
+}
+.new-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10rem;
+    padding: 20px;
+    opacity: 1;
+    order: -1;
+    transition: opacity 0.5s ease-in-out, order 0.5s ease-in-out;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    cursor: pointer; 
+    background-color: #ffffff00;
+    border: dashed var(--secondary) 2px;
+    transition: border 300ms ease-in-out;
+}
+
+.new-card>.icon {
+    font-family: 'Fira Sans', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    background-color: var(--secondary);
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    font-weight: 900;
+    color: var(--background);
+    transition: background 300ms ease-in-out;
+}
+
+.new-card:hover {
+    border-color: var(--accent);
+}
+
+.new-card:hover .icon {
+    background-color: var(--accent);
+}
