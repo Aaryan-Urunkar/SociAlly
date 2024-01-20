@@ -74,7 +74,7 @@ h6 {
   padding: 2rem 0;
 }
 .default-bg {
-  background-color: #1b4242;
+  background-color: #086565;
 }
 .white-bg {
   background-color: white;
@@ -122,7 +122,7 @@ h6 {
 /* Section 3 aka goals section start */
 .our-goal {
   padding: 6rem 2rem 2rem 2rem;
-  background-color: #1b4242;
+
   margin-top: 3rem;
 }
 .our-goal h1 {
@@ -146,7 +146,7 @@ h6 {
   font-size: 4rem;
 }
 .bi:hover {
-  color: #086565;
+  color: #1b4242;
 }
 .feature-info {
   /*Feature description*/

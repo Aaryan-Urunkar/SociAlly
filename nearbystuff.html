@@ -165,6 +165,7 @@
         for (i = 0; i < gridItems.length; i++) {
           h2 = gridItems[i].getElementsByTagName('h2')[0]
           txtValue = h2.textContent || h2.innerText
+          console.log(txtValue)
           var matchCount = 0
           for (var j = 0; j < filter.length; j++) {
             if (txtValue.toUpperCase().indexOf(filter[j]) > -1) {
