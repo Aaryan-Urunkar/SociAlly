@@ -138,7 +138,7 @@ Python should be installed.
 ## Usage
 
 [Vercel Link to running website](https://soci-ally-git-main-aaryan-urunkars-projects.vercel.app/)
-
+[Github pages link to running website](https://aaryan-urunkar.github.io/SociAlly/)
 To run the chatbot:
 ```sh
   
