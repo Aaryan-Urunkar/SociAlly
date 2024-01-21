@@ -214,6 +214,6 @@ Project Link: [https://github.com/Aaryan-Urunkar/SociAlly](https://github.com/Aa
 [stars-url]: https://github.com/Aaryan-Urunkar/SociAlly/stargazers
 [issues-shield]: https://img.shields.io/github/issues/Aaryan-Urunkar/SociAlly.svg?style=for-the-badge
 [issues-url]: https://github.com/Aaryan-Urunkar/SociAlly/issues
-[license-shield]: https://img.shields.io/github/license/Aaryan-Urunkar/SociAlly.svg?style=for-the-badge
-[license-url]: https://github.com/Aaryan-Urunkar/SociAlly/blob/main/LICENSE.txt
+[license-shield]: https://img.shields.io/github/license/CYCLOP5/Video-To-Spectrogram.svg?style=for-the-badge
+[license-url]: https://github.com/Aaryan-Urunkar/SociAlly/blob/master/LICENSE.txt
 
