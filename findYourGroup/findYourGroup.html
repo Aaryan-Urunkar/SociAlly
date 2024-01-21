@@ -19,7 +19,7 @@
   <body>
     <nav class="navbar navbar-expand sticky-top">
       <div class="container-fluid">
-        <a class="navbar-brand ms-2" href="#">soci<span>Ally</span></a>
+        <a class="navbar-brand ms-2" href="../homePage/index.html">soci<span>Ally</span></a>
         <button
           class="navbar-toggler"
           type="button"
@@ -34,8 +34,8 @@
 
         <ul class="navbar-nav ms-auto mb-lg-0">
           <li class="nav-item me-2">
-            <a class="nav-link active" aria-current="page" href="index.html"
-              >Home</a
+            <a class="nav-link active" aria-current="page" href="../Dashboard/dashboard.html"
+              >Dashboard</a
             >
           </li>
           <li class="nav-item me-2">
@@ -54,9 +54,14 @@
             type="text"
             name="city"
             placeholder="Enter your city"
-            class="list-group-item"
+            class="list-group-item city"
           />
         </div>
+        <script>
+          window.onload = () => {
+            document.querySelector('.city').value=JSON.parse(localStorage.getItem('user')).location;
+          }
+        </script>
         <div class="dropdownList list-group">
           <input
             type="text"
