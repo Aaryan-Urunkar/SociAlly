@@ -136,7 +136,8 @@ Python should be installed.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Click on index.html in homePage folder to start the website.<br>
+[Vercel Link to running website]()
+
 To run the chatbot:
 ```sh
    cd homePage
