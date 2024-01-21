@@ -1,0 +1,224 @@
+body{
+    background-color: #1B4242;
+    width:100vw;
+    overflow-x:hidden;
+    padding-bottom:20px;
+}
+
+p,span{
+    font-family:'Helvetica';
+    color: rgb(250, 255, 240);
+}
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Inria Sans', sans-serif;
+}
+
+.title{
+    font-family: 'M PLUS 2', sans-serif;
+    color: white;
+    font-size: 2rem;
+    margin-left:1%;
+}
+.title2{
+    font-family: 'M PLUS 2', sans-serif;
+    color: #30e5e5;
+    font-size: 2rem;
+}
+
+.page-header{
+    margin-top: 5%;
+    color: #c8ec8b;
+    text-align:center;
+}
+
+.info{
+    display:flex;
+    justify-content:center;
+}
+.info div{
+    background-color: #188B8B;
+    border-radius: 30px;
+    width:80%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding-top:2%;
+    padding-bottom:2%;
+}
+.info div p{
+    width:80%;
+    text-align:center;
+}
+
+
+/* Navbar Styling starts */
+
+.navbar {
+    text-align: center;
+    padding: 1.5rem 1rem 2rem 1rem;
+    background-color: #1b4242;
+  }
+  .navbar-brand {
+    font-family: 'M PLUS 2', sans-serif;
+    color: white;
+    font-size: 2rem;
+  }
+  .navbar-brand:hover {
+    color: white;
+  }
+  .navbar-brand span {
+    color: #30e5e5;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 2px; 
+  }
+  .navbar .nav-item button {
+    border: none; /*Button Styling and below this is the hover styling*/
+  }
+  .navbar .nav-item button:hover {
+    background-color: #086565;
+    color: white;
+  }
+  .nav-link:hover {
+    color: #30e5e5;
+  }
+  .nav-link {
+    color: white;
+  }
+  /* Navbar Styling Over */
+  
+  .logo-and-details{
+    width:80%;
+    margin-top:1%;
+    background-color: #265959;
+    border-radius:30px;
+    display:flex;
+    justify-content: space-around;
+  }
+ .details-format{
+    display:flex;
+    justify-content: center;
+ }
+ #details-container{
+    display:flex;
+    flex-direction: column;
+    justify-content:space-around;
+ }
+ 
+  #logo-container img{
+    height: 300px;
+    width: 100%;
+  }
+  #logo-container{
+    max-height:40%;
+  }
+
+  /*Importing poppins*/
+  .poppins-thin {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+  
+  .poppins-thin-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+  }
+  
+  .poppins-extralight {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: normal;
+  }
+  
+  .poppins-extralight-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-style: italic;
+  }
+  
+  .poppins-light {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .poppins-light-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  .poppins-regular {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .poppins-regular-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+  }
+  
+  .poppins-medium {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+  .poppins-medium-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+  }
+  
+  .poppins-semibold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  .poppins-semibold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: italic;
+  }
+  
+  .poppins-bold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  .poppins-bold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+  }
+  
+  .poppins-extrabold {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-style: normal;
+  }
+  
+  .poppins-extrabold-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    font-style: italic;
+  }
+  
+  .poppins-black {
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+  
+  .poppins-black-italic {
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+  }
+/*Done importing*/  
