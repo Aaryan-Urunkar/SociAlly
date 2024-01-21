@@ -140,7 +140,7 @@ Python should be installed.
 
 To run the chatbot:
 ```sh
-   cd homePage
+  
    python chatbotback.py
    ```
 This will open a localhost of our chatbot demo on the homepage which uses Gemini API.
