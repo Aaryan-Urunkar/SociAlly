@@ -136,7 +136,7 @@ Python should be installed.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-[Vercel Link to running website](https://soci-ally-qqxukrxl3-aaryan-urunkars-projects.vercel.app/)
+[Vercel Link to running website](https://soci-ally-git-main-aaryan-urunkars-projects.vercel.app/)
 
 To run the chatbot:
 ```sh
@@ -216,5 +216,5 @@ Project Link: [https://github.com/Aaryan-Urunkar/SociAlly](https://github.com/Aa
 [issues-shield]: https://img.shields.io/github/issues/Aaryan-Urunkar/SociAlly.svg?style=for-the-badge
 [issues-url]: https://github.com/Aaryan-Urunkar/SociAlly/issues
 [license-shield]: https://img.shields.io/github/license/Aaryan-Urunkar/SociAlly.svg?style=for-the-badge
-[license-url]: https://github.com/Aaryan-Urunkar/SociAlly/blob/master/LICENSE.txt
+[license-url]: https://github.com/Aaryan-Urunkar/SociAlly/blob/main/LICENSE.txt
 
