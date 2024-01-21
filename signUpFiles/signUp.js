@@ -1,4 +1,4 @@
-const userList = []
+
 
 function User(username,password,location) {
     this.username=username;
@@ -13,9 +13,10 @@ form.addEventListener('submit', (e)=>{
     const password=document.querySelector('.password-input');
     const location=document.querySelector('.location-input');
     const user=new User(username.value,password.value,location.value);
-    userList.push(user);
-    localStorage.setItem('userList',JSON.stringify(userList));
-    window.location='./test.html';
+    localStorage.setItem('user',JSON.stringify(user));
+    console.log(JSON.parse(localStorage.getItem('user')));
     e.preventDefault();
+    document.location.assign('../Dashboard/dashboard.html');
+
 })
 
