@@ -248,7 +248,7 @@ body {
 }
 
 
-.ngos-panel>.card {
+.card {
     background-color: var(--option);
     height: 10rem;
     padding: 20px;
@@ -276,8 +276,28 @@ body {
     font-size: 1.1rem;
 }
 
-.ngos-panel>.card:hover {
+.card:hover {
     background-color: rgba(48, 229, 229, 0.3);
 }
 
 
+.groups-panel>.card>.info {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    grid-template-rows: 2fr 1fr;
+    width: 100%;
+}
+
+.notifications {
+    grid-column:1/3;
+    text-align: center; 
+}
+
+.open-chat {
+    font-size: 1.3rem;
+    text-align: end;
+}
+
+.fa-message:hover {
+    color: var(--accent);
+}

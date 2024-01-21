@@ -184,7 +184,7 @@ const groups = (function(){
         const panel = document.querySelector('.panel');
         const groupsPanel = document.createElement('div');
         groupsPanel.classList.add('groups-panel');
-        //addGroups(groupsPanel);
+        addGroups(groupsPanel);
         newGroupIcon(groupsPanel);
         panel.appendChild(groupsPanel);
     }
@@ -193,6 +193,39 @@ const groups = (function(){
         const panel = document.querySelector('.panel');
         const groupsPanel = document.querySelector('.groups-panel');
         panel.remove(groupsPanel);
+    }
+
+    const addGroups = (groupsPanel) => {
+        const groups = JSON.parse(localStorage.getItem('user')).groups;
+        groups.forEach(group => {
+            const card = document.createElement('div');
+            const title = document.createElement('div');
+            const info = document.createElement('div');
+            const members = document.createElement('div');
+            const notifications = document.createElement('div');
+            const openChat = document.createElement('div');
+
+            //adding classes
+            card.classList.add('card');
+            info.classList.add('info');
+            title.classList.add('title');
+            members.classList.add('members');
+            notifications.classList.add('notifications');
+            openChat.classList.add('open-chat');
+            
+
+            //adding content
+            title.textContent=group.name;
+            members.innerHTML=`<i class="fa-solid fa-users"> </i> ${group.members.substring(9)}`;
+            notifications.innerHTML=`<i class="fa-solid fa-bell"> </i> No new notifications`;
+            openChat.innerHTML=`<i class="fa-solid fa-message"> </i>`;
+            
+
+            //appending content
+            info.append(notifications,members,openChat)
+            card.append(title,info);
+            groupsPanel.appendChild(card);
+        });
     }
 
     const newGroupIcon = (groupsPanel) => {
@@ -204,7 +237,7 @@ const groups = (function(){
         icon.classList.add('icon');
 
         //+ icon
-        //newCard.addEventListener('click', ()=>{window.open('../groupSearchPage/nearbystuff.html')})
+        newCard.addEventListener('click', ()=>{document.location.assign('../findYourGroup/findYourGroup.html')})
         icon.textContent="+";
 
 
