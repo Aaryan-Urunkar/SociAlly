@@ -7,7 +7,8 @@ load_dotenv()
 API_KEY = os.environ["API_KEY"]
 generativeai.configure(api_key=API_KEY)
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
+
 
 @app.route('/')
 def home():
