@@ -194,9 +194,9 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 ## Contact
 
 [Varun Jhaveri](https://github.com/CYCLOP5) <br>
-[Aaryan Urunkar](https://github.com/Aaryan-Urunkar)
-[Oren Coelho](https://github.com/Oreniscool)
-[Aaryan Mantri](https://github.com/DecayDestructor)
+[Aaryan Urunkar](https://github.com/Aaryan-Urunkar) <br>
+[Oren Coelho](https://github.com/Oreniscool) <br>
+[Aaryan Mantri](https://github.com/DecayDestructor) <br>
 Project Link: [https://github.com/Aaryan-Urunkar/SociAlly](https://github.com/Aaryan-Urunkar/SociAlly)
 
 <p align="right">(<a href="#readme-top">Back To Top</a>)</p>
