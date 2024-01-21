@@ -150,5 +150,7 @@ input.list-group-item {
   align-items: center;
   justify-content: center;
 }
-.apply {
+
+.applied {
+  cursor:not-allowed !important;
 }
