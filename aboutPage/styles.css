@@ -32,6 +32,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .info{
+  margin-top:2%;
     display:flex;
     justify-content:center;
 }
@@ -84,6 +85,11 @@ h1,h2,h3,h4,h5,h6{
   }
   .nav-link {
     color: white;
+    font-size: 17px;
+  }
+  .me-2{
+    padding-right:25px;
+    padding-bottom:15px;
   }
   /* Navbar Styling Over */
   
