@@ -62,15 +62,12 @@ const panel = (function(){
         clear();
         if(panelName=="stats") {
             stats.create();
-            console.log("stats");
         }
         else if(panelName=="groups") {
             groups.create();
-            console.log("groups");
         }
         else if(panelName=="ngo") {
             ngos.create();
-            console.log("ngos");
         }
     }
     return {change}
@@ -112,7 +109,6 @@ const stats = (function(){
         levelCard.append(levelIndicator,levelText,xpBar,xp);
         levelFrame.appendChild(levelCard);
         statsPanel.append(levelFrame);
-        //<i class="fa-solid fa-seedling"></i>
     }
     const contribution = (statsPanel) => {
         const contributionFrame = document.createElement('div');
@@ -226,7 +222,7 @@ const ngos = (function(){
         const panel = document.querySelector('.panel');
         const ngosPanel = document.createElement('div');
         ngosPanel.classList.add('ngos-panel');
-        //addNgos(ngosPanel);
+        addNgos(ngosPanel);
         newNgoIcon(ngosPanel);
         panel.appendChild(ngosPanel);
     }
@@ -235,6 +231,37 @@ const ngos = (function(){
         const panel = document.querySelector('.panel');
         const ngosPanel = document.querySelector('.ngos-panel');
         panel.remove(ngosPanel);
+    }
+
+    const addNgos = (ngosPanel) => {
+        const ngos = JSON.parse(localStorage.getItem('user')).ngos;
+        ngos.forEach(ngo => {
+            const card = document.createElement('div');
+            const title = document.createElement('div');
+            const info = document.createElement('div');
+            const location = document.createElement('div');
+            const date = document.createElement('div');
+            const time = document.createElement('div');
+
+            //adding classes
+            card.classList.add('card');
+            info.classList.add('info');
+            title.classList.add('title');
+            location.classList.add('location');
+            date.classList.add('date');
+            time.classList.add('time');
+
+            //adding content
+            title.textContent=ngo.title;
+            location.innerHTML=`<i class="fa-solid fa-map-location-dot"> </i> ${ngo.location}`;
+            date.innerHTML=`<i class="fa-solid fa-calendar-days"> </i> ${ngo.date}`;
+            time.innerHTML=`<i class="fa-solid fa-clock"> </i> ${ngo.time}`;
+
+            //appending content
+            info.append(date,time,location)
+            card.append(title,info);
+            ngosPanel.appendChild(card);
+        });
     }
 
     const newNgoIcon = (ngosPanel) => {

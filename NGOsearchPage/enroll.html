@@ -24,6 +24,19 @@
          document.getElementById('targetLoc').innerText = location;
          }
         };
+        const saveDetails = () => {
+            const user=JSON.parse(localStorage.getItem('user'));
+            function Ngo(title,description,date,time,location) {
+               this.title=title;
+               this.description=description;
+               this.date=date;
+               this.time=time;
+               this.location=location
+            }
+            const newNgo = new Ngo(localStorage.getItem('h2Text'),localStorage.getItem('pText'),localStorage.getItem('targetDate'),localStorage.getItem('targetTime'),localStorage.getItem('targetLoc'));
+            user.ngos.push(newNgo);
+            localStorage.setItem('user', JSON.stringify(user));
+        }
       </script>
    </head>
    <body>
@@ -59,7 +72,7 @@
       </section>
       <section id="ENROLL">
          <a href="finalPage.html">
-            <div class="btn">
+            <div class="btn" onclick="saveDetails()">
                <h2>APPLY NOW</h2>
             </div>
         </a>

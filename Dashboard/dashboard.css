@@ -33,7 +33,6 @@ body {
 
 .user-info {
     font-family: 'Fira Sans', sans-serif;
-    width: 25%;
     display: flex;
     gap:1vw;
     align-items: center;
@@ -51,7 +50,7 @@ body {
     font-size: 1.5rem;
 }
 
-.location {
+.user-info .location {
     font: 0.7rem;
     color:rgba(255, 255, 255,0.43);
 }
@@ -202,7 +201,7 @@ body {
 /* Groups&Ngos panel */
 .groups-panel,.ngos-panel {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
     grid-gap: 20px;
     padding: 20px;
     height: 100%;
@@ -213,9 +212,9 @@ body {
     justify-content: center;
     align-items: center;
     height: 10rem;
+    
     padding: 20px;
     opacity: 1;
-    order: -1;
     transition: opacity 0.5s ease-in-out, order 0.5s ease-in-out;
     border-radius: 1rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -247,3 +246,38 @@ body {
 .new-card:hover .icon {
     background-color: var(--accent);
 }
+
+
+.ngos-panel>.card {
+    background-color: var(--option);
+    height: 10rem;
+    padding: 20px;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.2rem;
+    color: var(--font-color);
+    transition: background 300ms ease-in-out;
+    
+}
+
+.card>.info {
+    font-family: 'Inria Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}   
+
+.card>.title {
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.ngos-panel>.card:hover {
+    background-color: rgba(48, 229, 229, 0.3);
+}
+
+
