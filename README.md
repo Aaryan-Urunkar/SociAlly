@@ -14,8 +14,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Aaryan-Urunkar/SociAlly.git">
-    <img src="https://github.com/Aaryan-Urunkar/SociAlly/assets/85669579/4fdb89b4-74ac-43d0-bd83-256b633c7df7
-" alt="Logo" width="80" height="80">
+    <img src="https://github.com/Aaryan-Urunkar/SociAlly/assets/85669579/4fdb89b4-74ac-43d0-bd83-256b633c7df7" alt="Logo" width="80" height="80">
   </a>
 
 <h3 align="center">SociAlly</h3>
