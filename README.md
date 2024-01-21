@@ -136,7 +136,7 @@ Python should be installed.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-[Vercel Link to running website]()
+[Vercel Link to running website](https://soci-ally-qqxukrxl3-aaryan-urunkars-projects.vercel.app/)
 
 To run the chatbot:
 ```sh
