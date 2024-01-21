@@ -1,81 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inria+Sans:wght@700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="styles.css">
-      <title>ENROLL PAGE</title>
-      <script>
-         window.onload = function() {
-         let h2Text = localStorage.getItem('h2Text');
-         let pText = localStorage.getItem('pText');
-         let location = localStorage.getItem('targetLoc');
-         let time = localStorage.getItem('targetTime');
-         let date = localStorage.getItem('targetDate');
-         console.log(h2Text, pText, location, time, date); 
-         if (h2Text && pText && location && time && date) {
-         document.getElementById('targetH1').innerText = h2Text;
-         document.getElementById('targetP').innerText = pText;
-         document.getElementById('targetDate').innerText = date;
-         document.getElementById('targetTime').innerText = time;
-         document.getElementById('targetLoc').innerText = location;
-         }
-        };
-        const saveDetails = () => {
-            const user=JSON.parse(localStorage.getItem('user'));
-            function Ngo(title,description,date,time,location) {
-               this.title=title;
-               this.description=description;
-               this.date=date;
-               this.time=time;
-               this.location=location
-            }
-            const newNgo = new Ngo(localStorage.getItem('h2Text'),localStorage.getItem('pText'),localStorage.getItem('targetDate'),localStorage.getItem('targetTime'),localStorage.getItem('targetLoc'));
-            user.ngos.push(newNgo);
-            localStorage.setItem('user', JSON.stringify(user));
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inria+Sans:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <title>ENROLL PAGE</title>
+    <script>
+      window.onload = function () {
+        let h2Text = localStorage.getItem('h2Text')
+        let pText = localStorage.getItem('pText')
+        let location = localStorage.getItem('targetLoc')
+        let time = localStorage.getItem('targetTime')
+        let date = localStorage.getItem('targetDate')
+        console.log(h2Text, pText, location, time, date)
+        if (h2Text && pText && location && time && date) {
+          document.getElementById('targetH1').innerText = h2Text
+          document.getElementById('targetH2').innerText = pText
+          document.getElementById('targetDate').innerText = date
+          document.getElementById('targetTime').innerText = time
+          document.getElementById('targetLoc').innerText = location
         }
-      </script>
-   </head>
-   <body>
-      <h1 id="targetH1">
-         NGO NAME/ACTIVITY NAME
-      </h1>
+      }
+      const saveDetails = () => {
+        const user = JSON.parse(localStorage.getItem('user'))
+        function Ngo(title, description, date, time, location) {
+          this.title = title
+          this.description = description
+          this.date = date
+          this.time = time
+          this.location = location
+        }
+        const newNgo = new Ngo(
+          localStorage.getItem('h2Text'),
+          localStorage.getItem('pText'),
+          localStorage.getItem('targetDate'),
+          localStorage.getItem('targetTime'),
+          localStorage.getItem('targetLoc')
+        )
+        user.ngos.push(newNgo)
+        localStorage.setItem('user', JSON.stringify(user))
+      }
+    </script>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand sticky-top">
+      <div class="container-fluid">
+        <a class="navbar-brand ms-2" href="#">soci<span>Ally</span></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <ul class="navbar-nav ms-auto mb-lg-0">
+          <li class="nav-item me-2">
+            <a class="nav-link active" aria-current="page" href="index.html"
+              >Home</a
+            >
+          </li>
+          <li class="nav-item me-2">
+            <a class="nav-link" href="">NGO Near You</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <h1 id="targetH1">NGO NAME/ACTIVITY NAME</h1>
+    <div class="megaContainer">
       <section id="activity-info-and-pics">
-         <div>
-            <h2   text-align: center >DESCRIPTION</h2>
+        <div class="container">
+          <div class="des ngo" style="width: 50%">
+            <h2 id="targetH2" text-align: center>DESCRIPTION OF NGO</h2>
+
             <p id="targetP">
-               
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed,
+              repudiandae.
             </p>
-         </div>
+          </div>
+          <div class="des activity">
+            <h2 id="targetH2" text-align: center>DESCRIPTION OF ACTIVITY</h2>
+
+            <p id="activity-description">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+              Perspiciatis ducimus perferendis facere deserunt, sit molestiae.
+            </p>
+          </div>
+        </div>
       </section>
-      <section id="img-and-details">
-         <div class="left">
+      <div class="bottom">
+        <section id="img-and-details">
+          <div class="left">
             <div class="component">
-               <img src="enrollPageImages/location.png">
-               <span id="targetLoc">LOCATION NAME</span>
+              <img src="enrollPageImages/location.png" />
+              <span id="target">LOCATION NAME</span>
             </div>
             <div class="component">
-               <img src="enrollPageImages/calendar.png">
-               <span id="targetDate">DATE</span>
+              <img src="enrollPageImages/calendar.png" />
+              <span id="target">DATE</span>
             </div>
             <div class="component">
-               <img src="enrollPageImages/clock.png">
-               <span id="targetTime">TIME</span>
+              <img src="enrollPageImages/clock.png" />
+              <span id="target">TIME</span>
             </div>
-         </div>
-         <div class="right">
-            <img src="enrollPageImages/river_cleaning.jpg">
-         </div>
-      </section>
+          </div>
+          <div class="right">
+            <img
+              src="enrollPageImages/WhatsApp-Image-2021-08-06-at-2.12.43-PM.jpeg"
+            />
+          </div>
+        </section>
+      </div>
       <section id="ENROLL">
-         <a href="finalPage.html">
-            <div class="btn" onclick="saveDetails()">
-               <h2>APPLY NOW</h2>
-            </div>
+        <a href="finalPage.html">
+          <div class="btn" onclick="saveDetails()">APPLY NOW</div>
         </a>
       </section>
-   </body>
+    </div>
+  </body>
 </html>
