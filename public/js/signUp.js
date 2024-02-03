@@ -17,7 +17,7 @@ form.addEventListener('submit', (e)=>{
     const user=new User(username.value,password.value,location.value,[],[]);
     localStorage.setItem('user',JSON.stringify(user));
     e.preventDefault();
-    document.location.assign('../Dashboard/dashboard.html');
+    document.location.assign('/dashboard');
 
 })
 

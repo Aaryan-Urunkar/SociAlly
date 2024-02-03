@@ -237,7 +237,7 @@ const groups = (function(){
         icon.classList.add('icon');
 
         //+ icon
-        newCard.addEventListener('click', ()=>{document.location.assign('../findYourGroup/findYourGroup.html')})
+        newCard.addEventListener('click', ()=>{document.location.assign('/findyourgroup')})
         icon.textContent="+";
 
 
@@ -306,7 +306,7 @@ const ngos = (function(){
         icon.classList.add('icon');
 
         //+ icon
-        newCard.addEventListener('click', ()=>{document.location.assign('../NGOsearchPage/nearbystuff.html')})
+        newCard.addEventListener('click', ()=>{document.location.assign('/nearbyactivity')})
         icon.textContent="+";
 
 
