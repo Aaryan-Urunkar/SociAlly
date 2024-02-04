@@ -1,5 +1,8 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-const config = require('./config.js');
+require('dotenv').config();
+const config = {
+    API_KEY: process.env.API_KEY
+};
 const genAI = new GoogleGenerativeAI(config.API_KEY);
 
 const model = genAI.getGenerativeModel({ model: "gemini-pro" });

@@ -1,8 +1,19 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const { auth } = require('express-openid-connect');
+require('dotenv').config();
+
 const app = express();
 const port = 3000;
 
+const config = {
+  authRequired: false,
+  auth0Logout: true,
+  secret: process.env.SECRET,
+  baseURL: process.env.BASEURL,
+  clientID: process.env.CLIENTID,
+  issuerBaseURL: process.env.ISSUER
+};
 
 
 app.listen(port, () => {
@@ -14,13 +25,21 @@ app.use('/css', express.static(__dirname + 'public/css'))
 app.use('/js', express.static(__dirname + 'public/js'))
 app.use('/img', express.static(__dirname + 'public/img'))
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(auth(config));
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
 
 app.get(['', '/home'], (req, res) => {
-  res.render('index');
+  if (req.oidc.isAuthenticated()) {
+    res.redirect('/dashboard');
+  } else {
+    res.render('index');
+  }
+});
+app.get('/callback', (req, res) => {
+  res.redirect('/dashboard');
 });
 
 app.get('/about', (req, res) => {
@@ -46,9 +65,24 @@ app.get('/finalpage', (req, res) => {
 app.get('/enroll', (req, res) => {
   res.render('enroll');
 });
+const isAuthenticated = (req, res, next) => {
+  if (req.oidc.isAuthenticated()) {
+    return next();
+  } else {
+    res.redirect('/'); 
+  }
+};
+app.get('/dashboard', isAuthenticated, (req, res) => {
+  console.log("Accessing dashboard route");
 
-app.get('/dashboard', (req, res) => {
-  res.render('dashboard');
+  const username = req.oidc.user.name;
+  const locationInfo = req.oidc.user.email;
+  const pictureUrl = req.oidc.user.picture;
+
+  res.render('dashboard', { username: username, location: locationInfo, picture: pictureUrl });
+  console.log('Username:', username);
+  console.log('Location:', locationInfo);
+  
 });
 
 

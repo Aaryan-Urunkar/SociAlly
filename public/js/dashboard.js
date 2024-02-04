@@ -1,18 +1,24 @@
 const user = (function(){
-    const userInfo = JSON.parse(localStorage.getItem('user'));
+    const getUsername = () => '<%= user.displayName %>'; 
 
-    const getUsername =() => {return userInfo.username};
-    const getLocation =() => {return userInfo.location};
+    const getLocation = () => '<%= user.location %>'; 
 
-    return {getUsername,getLocation}
+    return { getUsername, getLocation };
 })();
 
-const setInfo = () =>{
+
+const setInfo = () => {
     const greetingName = document.querySelector('.greeting-name');
     const location = document.querySelector('.location');
+    const pfp = document.querySelector('.pfp img');
 
-    greetingName.textContent=`Good day, ${user.getUsername()}`;
-    location.innerHTML=`<i class="fa-solid fa-location-dot"> </i> ${user.getLocation()}`;
+    const username = greetingName.textContent.trim();
+    const locationInfo = location.textContent.trim();
+    const pictureUrl = pfp.getAttribute('src');
+
+    greetingName.textContent = `Good day, ${username}`;
+    location.innerHTML = `<i class="fa-solid fa-location-dot"></i> ${locationInfo}`;
+    pfp.setAttribute('src', pictureUrl);
 }
 
 const navbar = (function(){
@@ -40,6 +46,10 @@ const navbar = (function(){
 
     return {create}
 })();
+const logoutBtn = document.querySelector('.logout-btn');
+logoutBtn.addEventListener('click', () => {
+    window.location.href = '/logout';
+});
 
 
 const panel = (function(){

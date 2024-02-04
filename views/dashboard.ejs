@@ -11,12 +11,16 @@
 <body>
     <div class="top-bar"> 
         <div class="user-info">
-            <div class="pfp"><i class="fa-solid fa-circle-user"></i></div>
-            <div class="text">
-                <div class="greeting-name"></div>
-                <div class="location"></div>
+            <div class="pfp">
+                <img src="<%= picture %>" alt="Profile Picture">
             </div>
+            <div class="text">
+                <div class="greeting-name"><%= username %></div>
+                <div class="location"><%= location %></div>
+            </div>
+            
         </div>
+        <button class="logout-btn">Logout</button>
     </div>
     <div class="navbar">
         <div class="stats option selected">Your stats</div>
