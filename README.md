@@ -88,11 +88,11 @@
 
 ### Built With
 
-* Python
+* Node.js
 * HTML
 * CSS
 * JS
-* flask
+* Express
  
 
 <p align="right">(<a href="#readme-top">Back To Top</a>)</p>
@@ -105,11 +105,12 @@
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
-Python should be installed.
+node.js and npm should be installed.
 
-* python
+* node
   ```sh
-  python --version
+  node -v
+  npm -v
   ```
 
   
@@ -121,14 +122,9 @@ Python should be installed.
    ```
 2. Install needed packages
    ```sh
-   pip install -r requirements.txt
+   npm install
    ```
-3. Linux distros might need to create an environment first with :
-   ```sh
-   python -m venv env
-   . env/bin/activate
-   pip install -r requirements.txt
-   ```
+
 
 <p align="right">(<a href="#readme-top">Back To Top</a>)</p>
 
@@ -139,12 +135,7 @@ Python should be installed.
 
 [Vercel Link to running website](https://soci-ally-git-main-aaryan-urunkars-projects.vercel.app/)
 [Github pages link to running website](https://aaryan-urunkar.github.io/SociAlly/)
-To run the chatbot:
-```sh
-  
-   python chatbotback.py
-   ```
-This will open a localhost of our chatbot demo on the homepage which uses Gemini API.
+
 
 <p align="right">(<a href="#readme-top">Back To Top</a>)</p>
 
@@ -153,7 +144,7 @@ This will open a localhost of our chatbot demo on the homepage which uses Gemini
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Backend with database instead of local storage
+- [x] Transition to nodejs/express
 - [ ] Auto API updates to get new NGO activites by collaborating with NGO's
 - [ ] Full account authentication
 - [ ] Reward System and Leaderboard to work.
