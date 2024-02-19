@@ -153,7 +153,7 @@ app.put('/add-user-group/:group', async (req, res) => {
 
 app.put('/add-user-ngo/:ngo', async (req, res) => {
   console.log('gi');
-  const ngo = JSON.parse(req.params);
+  const ngo = JSON.parse(req.params.ngo);
   console.log(ngo);
   const locationInfo = req.oidc.user.email;
   let userNgos = 0;
