@@ -1,33 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SociAlly | Dashboard</title>
-    <script src="https://kit.fontawesome.com/de9ca8d89e.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="icon" href="/SociAlly/Assets/favicon.png" type="image/x-icon">
-</head>
-<body>
-    <div class="top-bar"> 
-        <div class="user-info">
-            <div class="pfp">
-                <img src="<%= picture %>" alt="Profile Picture">
-            </div>
-            <div class="text">
-                <div class="greeting-name"><%= username %></div>
-                <div class="location"><%= location %></div>
-            </div>
-            
+    <script
+      src="https://kit.fontawesome.com/de9ca8d89e.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="icon" href="/SociAlly/Assets/favicon.png" type="image/x-icon" />
+  </head>
+  <body>
+    <div class="top-bar">
+      <div class="user-info">
+        <div class="pfp">
+          <img src="<%= picture %>" alt="Profile Picture" />
         </div>
-        <button class="logout-btn">Logout</button>
+        <div class="text">
+          <div class="greeting-name"><%= username %></div>
+          <div class="location"><%= location %></div>
+        </div>
+      </div>
+      <button class="logout-btn">Logout</button>
     </div>
     <div class="navbar">
-        <div class="stats option selected">Your stats</div>
-        <div class="groups option">Your groups</div>
-        <div class="ngo option">Your NGOs</div>
+      <div class="stats option selected">Your stats</div>
+      <div class="groups option">Your groups</div>
+      <div class="ngo option">Your NGOs</div>
     </div>
     <div class="panel"></div>
     <script src="js/dashboard.js"></script>
-</body>
+  </body>
 </html>
