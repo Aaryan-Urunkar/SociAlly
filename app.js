@@ -152,7 +152,9 @@ app.put('/add-user-group/:group', async (req, res) => {
 });
 
 app.put('/add-user-ngo/:ngo', async (req, res) => {
+
   const ngo = JSON.parse(req.params.ngo);
+
   const locationInfo = req.oidc.user.email;
   let userNgos = 0;
   await UserModel.findOne({ email: locationInfo }).then((user) => {

@@ -9,8 +9,10 @@
   --accent: #30e5e5;
   --font-color: #ecf8f8;
   --font-color-deselect: rgba(236, 248, 248, 0.53);
+
   --option: #188b8b4d;
   --option-selected: #188b8b;
+
 }
 
 html,
@@ -72,6 +74,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   justify-content: center;
   gap: 5vw;
+
 }
 
 .logout-btn {
@@ -86,12 +89,15 @@ body {
 .logout-btn:hover {
   background-color: rgba(48, 229, 229, 0.3);
   color: #96e7e7;
+
 }
 
 .option {
   background-color: var(--option);
   border-radius: 1rem;
+
   font-weight: 600;
+
   padding: 0.8rem;
   cursor: pointer;
   color: var(--font-color-deselect);
@@ -295,7 +301,9 @@ body {
 
 .card > .title {
   font-family: 'Fira Sans', sans-serif;
+
   font-weight: 600;
+
   font-size: 1.1rem;
 }
 
