@@ -16,7 +16,7 @@ const setInfo = () => {
   const pictureUrl = pfp.getAttribute('src');
 
   greetingName.textContent = `Good day, ${username}`;
-  location.innerHTML = `<i class="fa-solid fa-location-dot"></i> ${locationInfo}`;
+  location.innerHTML = `<i class="fa-regular fa-envelope"></i> ${locationInfo}`;
   pfp.setAttribute('src', pictureUrl);
 };
 
