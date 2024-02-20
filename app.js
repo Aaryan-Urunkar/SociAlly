@@ -72,7 +72,7 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/signup', (req, res) => {
-  res.render('sign-up');
+  res.render('sign-up/signup');
 });
 
 app.get('/nearbyactivity', (req, res) => {
@@ -152,9 +152,9 @@ app.put('/add-user-group/:group', async (req, res) => {
 });
 
 app.put('/add-user-ngo/:ngo', async (req, res) => {
-  console.log('gi');
+
   const ngo = JSON.parse(req.params.ngo);
-  console.log(ngo);
+
   const locationInfo = req.oidc.user.email;
   let userNgos = 0;
   await UserModel.findOne({ email: locationInfo }).then((user) => {

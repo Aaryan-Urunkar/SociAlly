@@ -50,14 +50,18 @@
           <li class="nav-item me-4">
             <button
               type="button"
-              class="btn btn-outline-light"
-              onclick="location.href='/login/'"
+              class="btn btn-outline-light sign-up"
+              onclick="showOptions()"
             >
               Sign Up
             </button>
+            <div class="login-options">
+              <div onclick="location.href='/login/'">As a volunteer</div>
+              <div>As a NGO</div>
+            </div>
           </li>
           <li class="nav-item me-3">
-            <button type="button" class="btn btn-outline-light">Log In</button>
+            <button type="button" class="btn btn-outline-light" onclick="location.href='/login/'">Log In</button>
           </li>
         </ul>
       </div>
@@ -66,16 +70,10 @@
       <div class="main">
         <div class="info animateLeftDisabled hidden animatable">
           <h1>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure,
-            eligendi?
+            Welcome to Soc<span style="background: linear-gradient(to right, #e9f9f9, #96e7e7, #30e5e5,#23c4c4); -webkit-text-fill-color: transparent;-webkit-background-clip: text;">iAlly</span>
           </h1>
           <article class="content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, quae
-            minima neque et provident, quidem voluptas sapiente quas veniam
-            adipisci tempore dolore tempora sed praesentium. Ipsam voluptates
-            vitae voluptate omnis, dicta, nisi optio nobis consequatur pariatur
-            iure, perferendis molestias excepturi quibusdam explicabo debitis
-            quam dignissimos aperiam ipsum nemo enim. Doloribus.
+             Ever wanted to have a more seemless experience in partaking in social work? Well you're at the right place! With SociAlly you can sign up for events, track your progress and even register to stage your own events. Find your perfect fit, simplify collaboration, and make a real difference together.
           </article>
         </div>
         <img
@@ -89,16 +87,10 @@
       <div class="main white-bg">
         <div class="info animateRightDisabled hidden animatable">
           <h1>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure,
-            eligendi?
+            Connect, Collaborate, Create Change.
           </h1>
           <article class="content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, quae
-            minima neque et provident, quidem voluptas sapiente quas veniam
-            adipisci tempore dolore tempora sed praesentium. Ipsam voluptates
-            vitae voluptate omnis, dicta, nisi optio nobis consequatur pariatur
-            iure, perferendis molestias excepturi quibusdam explicabo debitis
-            quam dignissimos aperiam ipsum nemo enim. Doloribus.
+            At SociAlly, we believe in the transformative power of volunteerism. We connect passionate individuals with inspiring NGOs, fostering meaningful partnerships that create positive change in our communities.
           </article>
         </div>
         <img
@@ -118,7 +110,7 @@
           <div class="col-4" id="feature-box">
             <i class="bi bi-person-arms-up"></i>
             <h3 id="feature-heading">Find your people.</h3>
-            <p class="feature-info">Collaborate with fellow social workers!.</p>
+            <p class="feature-info">Collaborate with fellow social workers!</p>
           </div>
           <div class="col-4" id="feature-box">
             <i class="bi bi-search"></i>
@@ -180,6 +172,14 @@
     <script src="js/Homescript.js"></script>
     <script type="module" src="js/chatbot.js"></script>
     <script>
+      const showOptions = () => {
+        const loginOptions = document.querySelector('.login-options');
+        if(loginOptions.style.display == "flex") {
+          loginOptions.style.display="none";
+          return;
+        }
+        loginOptions.style.display="flex";
+      }
       document.addEventListener("DOMContentLoaded", function() {
          const chatbotTogglers = document.querySelectorAll(".chatbot-toggler");
          const chatbot = document.querySelector(".chatbot");
