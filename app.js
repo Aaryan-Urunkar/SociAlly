@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const UserModel = require('./model/User');
+const NgoModel = require('./model/NGOs');
 const { auth } = require('express-openid-connect');
 
 require('dotenv').config();
@@ -33,6 +34,19 @@ async function saveUser(userFlag, username, email) {
     .then(() => console.log('User created'))
     .catch((err) => console.error(err));
 }
+async function saveNgo(userFlag, username, email) {
+  if (userFlag) {
+    return;
+  }
+  const user = new NgoModel({
+    username: username,
+    email: email,
+  });
+  await user
+    .save()
+    .then(() => console.log('Ngo created'))
+    .catch((err) => console.error(err));
+}
 const config = {
   authRequired: false,
   auth0Logout: true,
@@ -56,9 +70,31 @@ app.use(auth(config));
 app.set('views', './views');
 app.set('view engine', 'ejs');
 
-app.get(['', '/home'], (req, res) => {
+app.get(['', '/home'], async (req, res) => {
   if (req.oidc.isAuthenticated()) {
-    res.redirect('/dashboard');
+    await UserModel.findOne({
+      username: req.oidc.user.name,
+      email: req.oidc.user.email,
+    })
+      .then((user) => {
+        if (user) {
+          res.redirect('/dashboard');
+          return;
+        }
+      })
+      .catch((err) => console.log(err));
+    await NgoModel.findOne({
+      username: req.oidc.user.name,
+      email: req.oidc.user.email,
+    })
+      .then((user) => {
+        if (user) {
+          res.redirect('/ngo-dashboard');
+          return;
+        }
+      })
+      .catch((err) => console.log(err));
+    res.render('chooseRole');
   } else {
     res.render('index');
   }
@@ -72,7 +108,7 @@ app.get('/about', (req, res) => {
 });
 
 app.get('/signup', (req, res) => {
-  res.render('sign-up/signup');
+  res.render('sign-up');
 });
 
 app.get('/nearbyactivity', (req, res) => {
@@ -86,10 +122,16 @@ app.get('/findyourgroup', (req, res) => {
 app.get('/finalpage', (req, res) => {
   res.render('finalPage');
 });
-
+app.get('/chooserole', (req, res) => {
+  res.render('chooseRole');
+});
 app.get('/enroll', (req, res) => {
   res.render('enroll');
 });
+app.get('/index', (req, res) => {
+  res.render('index');
+});
+
 const isAuthenticated = (req, res, next) => {
   if (req.oidc.isAuthenticated()) {
     return next();
@@ -99,7 +141,6 @@ const isAuthenticated = (req, res, next) => {
 };
 app.get('/dashboard', isAuthenticated, async (req, res) => {
   console.log('Accessing dashboard route');
-
   const username = req.oidc.user.name;
   const locationInfo = req.oidc.user.email;
   const pictureUrl = req.oidc.user.picture;
@@ -112,6 +153,24 @@ app.get('/dashboard', isAuthenticated, async (req, res) => {
     username: username,
     location: locationInfo,
     picture: pictureUrl,
+  });
+  console.log('Username:', username);
+  console.log('Location:', locationInfo);
+});
+
+app.get('/ngo-dashboard', isAuthenticated, async (req, res) => {
+  console.log('Accessing ngo dashboard route');
+
+  const username = req.oidc.user.name;
+  const locationInfo = req.oidc.user.email;
+
+  await NgoModel.findOne({ email: locationInfo })
+    .then((user) => saveNgo(user, username, locationInfo))
+    .catch((err) => console.error(err));
+
+  res.render('ngoDashboard', {
+    username: username,
+    location: locationInfo,
   });
   console.log('Username:', username);
   console.log('Location:', locationInfo);
@@ -132,6 +191,14 @@ app.get('/get-user-ngos', async (req, res) => {
     (user) => (ngoArr = user.ngos)
   );
   res.json(ngoArr);
+});
+app.get('/get-ngo-events', async (req, res) => {
+  const locationInfo = req.oidc.user.email;
+  let eventsArr = [];
+  await NgoModel.findOne({ email: locationInfo }).then(
+    (user) => (eventsArr = user.events)
+  );
+  res.json(eventsArr);
 });
 
 app.put('/add-user-group/:group', async (req, res) => {
