@@ -202,7 +202,15 @@ app.put('/add-user-ngo/:ngo', async (req, res) => {
     res.status(500).send('Error adding NGO');
   }
 });
+const generationConfig = {
+  stopSequences: ["red"],
+  maxOutputTokens: 5,
+  temperature: 0.9,
+  topP: 0.1,
+  topK: 16,
+};
 
+const model = genAI.getGenerativeModel({ model: "MODEL_NAME",  generationConfig });
 
 app.post('/generate', async (req, res) => {
   const { base64Image, prompt } = req.body
@@ -219,7 +227,7 @@ app.post('/generate', async (req, res) => {
       const model = genAI.getGenerativeModel({ model: "gemini-pro-vision"});
       result = await model.generateContentStream([prompt, imagePart]);
     } else {
-      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+      const model = genAI.getGenerativeModel({ model: "gemini-pro" , generationConfig});
       result = await model.generateContentStream(prompt);
     }
     

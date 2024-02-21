@@ -20,6 +20,18 @@ h6 {
   transition-delay: 0.3s;
   opacity: 0;
 }
+.message {
+  background-color: white;
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.chat .message {
+  padding: 10px;
+  background-color: #eee;
+  border-radius: 10px;
+}
 
 .animateLeftDisabled {
   transform: translateX(-100%);
@@ -329,6 +341,21 @@ header h2 {
   background: #fff;
   padding: 3px 20px;
   border-top: 1px solid #ddd;
+}
+.chat.incoming {
+  justify-content: flex-start;
+  margin-bottom: 10px; 
+}
+.chat.outgoing {
+  justify-content: flex-end;
+}
+
+.chat.incoming .message {
+  background-color: #fff
+}
+
+.chat i.material-icons {
+  margin-right: 5px;
 }
 .chatbot .chat-input textarea {
   height: 55px;
