@@ -128,50 +128,46 @@
           </div>
         </div>
       </div>
-    </div>
-    <body class="show-chatbot">
+     </div>
+     <body class="show-chatbot">
       <button class="chatbot-toggler">
        <i class="material-symbols-outlined">
-         chat
+        chat
        </i>
       </button>
       <button class="chatbot-toggler">
         <i class="material-symbols-outlined">
-          chat
+         chat
         </i>
        </button>
        <div class="chatbot">
-          <header>
-             <h2>NGO Helper</h2>
-          </header>
-          <ul class="chatbox">
-             <li class="chat incoming">
-                <i class="material-icons">smart_toy</i>
-                <p>Hi there <br>How can I help you today?</p>
-             </li>
-          </ul>
-          <div class="chat-input">
-             <form method="POST" action="">
-                <div style="display: flex; align-items: center;">
-                   <input type="text" id="message" name="message" required style="flex: 1; padding: 8px; border-radius: 5px; border: 1px solid #ccc; font-size: 14px;">
-                   <button type="submit" style="background-color: #4CAF50; /* Green */
-                      border: none;
-                      color: white;
-                      padding: 8px 16px;
-                      text-align: center;
-                      text-decoration: none;
-                      display: inline-block;
-                      font-size: 14px;
-                      margin-left: 10px;
-                      cursor: pointer;
-                      border-radius: 5px;">Send</button>
-                </div>
-             </form>
-          </div>
+         <header>
+           <h2>NGO Helper</h2>
+         </header>
+         <ul class="chatbox">
+           <li class="chat incoming">
+             <i class="material-icons">smart_toy</i>
+             <p>Hi there <br>How can I help you today?</p>
+           </li>
+         </ul>
+         <div class="chat-input">
+          <input type="text" id="prompt" name="prompt" required style="flex: 1; padding: 8px; border-radius: 5px; border: 1px solid #ccc; font-size: 14px;">
+          <input type="file" id="imageUpload" accept="image/*" style="margin-left: 10px;">
+          <button type="submit" id="fetchButton" style="background-color: #4CAF50; border: none; color: white; padding: 8px 16px; text-align: center; text-decoration: none; font-size: 14px; margin-left: 10px; cursor: pointer; border-radius: 5px; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);">Send</button>
+      </div>
+      
        </div>
-    <script src="js/Homescript.js"></script>
-    <script type="module" src="js/chatbot.js"></script>
+       <div id="loader"><p>hold on</p></div>
+
+     <script src="js/Homescript.js"></script>
+     <script
+    src="https://cdn.socket.io/4.7.2/socket.io.min.js"
+    integrity="sha384-mZLF4UVrpi/QTWPA7BjNPEnkIfRFn4ZEO3Qt/HFklTJBj/gBOV8G3HcKn4NfQblz"
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
+          const chatbox = document.querySelector('.chatbox');
       const showOptions = () => {
         const loginOptions = document.querySelector('.login-options');
         if(loginOptions.style.display == "flex") {
@@ -190,6 +186,60 @@
               document.body.classList.toggle("show-chatbot");
             });
          });
+      });
+      const fetchButton = document.getElementById("fetchButton");
+      const contentDiv = document.getElementById("content");
+      const loader = document.getElementById('loader');
+      const imageUpload = document.getElementById('imageUpload'); 
+      let base64String;
+      imageUpload.addEventListener('change', function () {
+        const file = this.files[0];
+        const reader = new FileReader();
+
+        reader.onloadend = function () {
+          base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
+          imagePreview.src = reader.result;
+          imagePreview.style.display = 'block';
+        };
+        if (file) {
+          reader.readAsDataURL(file);
+        }
+      });
+      fetchButton.addEventListener("click", async ()=> {
+        const socket = io("https://socially-m7zw.onrender.com/");
+        socket.on('connect', () => {
+          console.log('Connected to server');
+          loader.style.display = 'block';
+        });
+        socket.on("content", (data)=>{
+          try {
+            console.log(data);
+            loader.style.display = 'none';
+            if (data !== "hope this is useful :)") {
+     
+               chatbox.insertAdjacentHTML('beforeend', `<li class="chat incoming"><div class="message">${data}</div></li>`);
+            }
+
+          } catch (error) {
+            console.error('Error processing data:', error);
+          }
+        });
+        socket.on('disconnect', function () {
+          console.log('Server has disconnected');
+        });
+        // console.log(base64String)
+        const response = await fetch("https://socially-m7zw.onrender.com/generate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            prompt: document.getElementById("prompt").value,
+            base64Image: base64String,
+          }),
+        });
+        const data = await response.json();
+        console.log(data);
       });
     </script>
   </body>
