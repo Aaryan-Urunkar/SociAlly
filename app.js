@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const UserModel = require('./model/User');
 const NgoModel = require('./model/NGOs');
+const { lightFormat } = require('date-fns');
 const { auth } = require('express-openid-connect');
 
 require('dotenv').config();
@@ -215,6 +216,32 @@ app.put('/add-user-group/:group', async (req, res) => {
       { email: locationInfo },
       { $push: { groups: group } }
     ).then(() => console.log('Added group'));
+  }
+});
+
+app.post('/add-ngo-event/:event', async (req, res) => {
+  const event = JSON.parse(req.params.event);
+  //Formating date and time
+  event.date = lightFormat(new Date(event.date), 'dd/MM/yyyy');
+  const dateArray = event.time.split(':');
+  event.time = lightFormat(
+    new Date(2000, 1, 1, dateArray[0], dateArray[1]),
+    'hh:mm a'
+  );
+
+  const locationInfo = req.oidc.user.email;
+  let ngoEvents = 0;
+  await NgoModel.findOne({ email: locationInfo }).then((ngo) => {
+    ngoEvents = ngo.events;
+  });
+  if (ngoEvents.find((ngoEvent) => ngoEvent.title == event.title)) {
+    res.status(400).send('event with the same name already exists');
+  } else {
+    await NgoModel.findOneAndUpdate(
+      { email: locationInfo },
+      { $push: { events: event } }
+    ).then(() => console.log('Added event'));
+    res.status(200).send('Event created');
   }
 });
 

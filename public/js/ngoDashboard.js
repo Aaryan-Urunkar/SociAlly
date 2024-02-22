@@ -5,7 +5,6 @@ const user = (function () {
 
   return { getUsername, getLocation };
 })();
-
 const setInfo = () => {
   const greetingName = document.querySelector('.greeting-name');
   const location = document.querySelector('.location');
@@ -35,7 +34,7 @@ const events = (function () {
   const remove = () => {
     const panel = document.querySelector('.panel');
     const eventsPanel = document.querySelector('.events-panel');
-    panel.remove(eventsPanel);
+    panel.removeChild(eventsPanel);
   };
 
   const addEvents = async (eventsPanel) => {
@@ -83,7 +82,7 @@ const events = (function () {
 
     //+ icon
     newCard.addEventListener('click', () => {
-      console.log('works');
+      document.querySelector('.film').style.display = 'flex';
     });
     icon.textContent = '+';
 
@@ -92,7 +91,51 @@ const events = (function () {
     eventsPanel.appendChild(newCard);
   };
 
-  return { create, remove };
+  const refresh = async () => {
+    remove();
+    await create();
+  };
+
+  return { create, remove, refresh };
 })();
 
 events.create();
+
+const form = (function () {
+  const getInputs = () => {
+    const title = document.querySelector('.title-input').value;
+    const description = document.querySelector('.description-input').value;
+    const location = document.querySelector('.location-input').value;
+    const date = document.querySelector('.date-input').value;
+    const time = document.querySelector('.time-input').value;
+
+    return { title, description, location, date, time };
+  };
+  const listenSubmit = () => {
+    const form = document.querySelector('form');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      await saveEvent(getInputs());
+    });
+  };
+  const saveEvent = async (event) => {
+    clearInputs();
+    document.querySelector('.film').style.display = 'none';
+    await fetch(`/add-ngo-event/${JSON.stringify(event)}`, {
+      method: 'POST',
+    })
+      .then((res) => console.log(res.status))
+      .catch((error) => console.error(error));
+    await events.refresh();
+  };
+  const clearInputs = () => {
+    document.querySelector('.title-input').value = '';
+    document.querySelector('.description-input').value = '';
+    document.querySelector('.location-input').value = '';
+    document.querySelector('.date-input').value = '';
+    document.querySelector('.time-input').value = '';
+  };
+  return { listenSubmit };
+})();
+
+form.listenSubmit();

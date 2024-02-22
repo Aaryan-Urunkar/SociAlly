@@ -29,6 +29,48 @@
     <div class="navbar">
       <div class="stats option selected">Your events</div>
     </div>
+    <div class="film">
+      <div class="form-panel">
+        <h2 class="title">Enter the details</h2>
+        <form>
+          <input
+            type="text"
+            class="title-input"
+            name="title"
+            placeholder="Event title"
+            required
+          />
+          <textarea
+            name="description"
+            placeholder="Event details"
+            class="description-input"
+            cols="30"
+            rows="8"
+            required
+          ></textarea>
+          <input
+            type="text"
+            name="location"
+            class="location-input"
+            placeholder="Location details"
+            required
+          />
+          <div
+            style="display: flex; justify-content: space-between; width: 100%"
+          >
+            <input type="date" name="date" class="date-input" required />
+            <input type="time" name="time" class="time-input" required />
+          </div>
+          <button type="submit" class="submit-button">Create</button>
+        </form>
+        <div
+          class="close"
+          onclick="document.querySelector('.film').style.display='none'"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+      </div>
+    </div>
     <div class="panel"></div>
     <script src="js/ngoDashboard.js"></script>
   </body>
