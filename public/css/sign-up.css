@@ -1,148 +1,147 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inria+Sans&display=swap');
 
 :root {
-    --background:#1b4141;
-    --primary:#96e7e7;
-    --primary-hover:#78afaf;
-    --secondary:#188b8b;
-    --secondary-hover:#116464;
-    --accent:#30e5e5;
-    --form-panel:rgba(24, 139, 139, 0.3);
-    --font-color:#ecf8f8;
+  --background: #1b4141;
+  --primary: #96e7e7;
+  --primary-hover: #78afaf;
+  --secondary: #188b8b;
+  --secondary-hover: #116464;
+  --accent: #30e5e5;
+  --form-panel: #188b8b4d;
+  --font-color: #ecf8f8;
 }
 
-
-
-html, body {
-    margin: 0;
-    height: 100%;
-    background-color: var(--background);
+html,
+body {
+  margin: 0;
+  height: 100%;
+  background-color: var(--background);
 }
 body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
 .logo {
-    font-family: 'Fira Sans', sans-serif;
-    font-size: 3rem;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 3rem;
 }
 
 .container {
-    font-family: 'Inria Sans', sans-serif;
-    color: var(--font-color);
-    background-color: var(--form-panel);
-    width: max(30vw,20rem);
-    height: 75vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    border-radius: 1.5rem;
-    align-items: center;
-    padding:3rem;
-    gap:2rem;
+  font-family: 'Inria Sans', sans-serif;
+  color: var(--font-color);
+  background-color: var(--form-panel);
+  width: max(30vw, 20rem);
+  height: 75vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  border-radius: 1.5rem;
+  align-items: center;
+  padding: 3rem;
+  gap: 2rem;
 }
 
 .sign-up {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    width: 90%;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  height: 100%;
 }
 .inputs {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 100%;
-    height: 65%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 65%;
 }
 
-.username,.password,.location {
-    display: flex;
-    flex-direction: column;
-    gap: 1vh;
+.username,
+.password,
+.location {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
 }
 
 .submit-button {
-    color: var(--secondary);
-    background-color: var(--primary);
-    border: none;
-    height: 2.5rem;
-    width: 7.5rem;
-    border-radius: 1rem;
-    font-size: 1.5rem;
-    transition: all 300ms ease-in-out;
+  color: var(--secondary);
+  background-color: var(--primary);
+  border: none;
+  height: 2.5rem;
+  width: 7.5rem;
+  border-radius: 1rem;
+  font-size: 1.5rem;
+  transition: all 300ms ease-in-out;
 }
 .submit-button:hover {
-    color: var(--font-color);
-    background-color: var(--primary-hover);
-    border: solid 2px var(--accent);
-    cursor: pointer;
+  color: var(--font-color);
+  background-color: var(--primary-hover);
+  border: solid 2px var(--accent);
+  cursor: pointer;
 }
 
 label {
-    padding-left: 1rem;
-    font-size: 1.2rem;
+  padding-left: 1rem;
+  font-size: 1.2rem;
 }
 input {
-    background-color: var(--secondary);
-    border: none;
-    border-radius: 0.8rem;
-    height: 2rem;
-    font-size: 1.5rem;
-    color: var(--font-color);
-    padding-left: 10px;
-    transition: all 300ms ease-in-out;
+  background-color: var(--secondary);
+  border: none;
+  border-radius: 0.8rem;
+  height: 2rem;
+  font-size: 1.5rem;
+  color: var(--font-color);
+  padding-left: 10px;
+  transition: all 300ms ease-in-out;
 }
 input:hover {
-    background-color: var(--secondary-hover);
-    border: solid 1px var(--secondary);
+  background-color: var(--secondary-hover);
+  border: solid 1px var(--secondary);
 }
 input:focus {
-    outline: none !important;
-    background-color: var(--secondary-hover);
-    border: solid 1px var(--secondary);
+  outline: none !important;
+  background-color: var(--secondary-hover);
+  border: solid 1px var(--secondary);
 }
 
 .or {
-    display: flex;
-    gap: 10px;
-    color: var(--accent);
+  display: flex;
+  gap: 10px;
+  color: var(--accent);
 }
 hr {
-    width: 13vw;
-    color: #ffffff00;
-    background-color: var(--secondary);
+  width: 13vw;
+  color: #ffffff00;
+  background-color: var(--secondary);
 }
 
 .sign-up-google {
-    font-family: 'Fira Sans', sans-serif;
-    display: flex;
-    width: 100%;
-    border: 2px solid var(--font-color);
-    padding: 1rem;
-    border-radius: 1rem;
-    justify-content: start;
-    gap: 25%;
-    font-size: 1.2rem;
-    transition: all 300ms ease-in-out;
-    font-weight: 600;
+  font-family: 'Fira Sans', sans-serif;
+  display: flex;
+  width: 100%;
+  border: 2px solid var(--font-color);
+  padding: 1rem;
+  border-radius: 1rem;
+  justify-content: start;
+  gap: 25%;
+  font-size: 1.2rem;
+  transition: all 300ms ease-in-out;
+  font-weight: 600;
 }
 .fa-google {
-    width: 10%;
+  width: 10%;
 }
 
 .text {
-    width: 90%;
+  width: 90%;
 }
 
 .sign-up-google:hover {
-    color: var(--secondary);
-    background-color: var(--font-color);
-    cursor: pointer;
+  color: var(--secondary);
+  background-color: var(--font-color);
+  cursor: pointer;
 }
-

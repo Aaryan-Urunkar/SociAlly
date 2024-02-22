@@ -20,6 +20,7 @@ h6 {
   transition-delay: 0.3s;
   opacity: 0;
 }
+
 .message {
   background-color: white;
   color: black;
@@ -32,6 +33,7 @@ h6 {
   background-color: #eee;
   border-radius: 10px;
 }
+
 
 .animateLeftDisabled {
   transform: translateX(-100%);
@@ -78,6 +80,7 @@ h6 {
 .nav-link {
   color: white;
 }
+
 .me-4 {
   position: relative;
 }
@@ -104,6 +107,7 @@ h6 {
 .login-options > div:hover {
   background-color: #30e5e529;
 }
+
 /* Navbar Styling Over */
 /* Section 1 styling */
 .section.default-bg {
@@ -342,6 +346,7 @@ header h2 {
   padding: 3px 20px;
   border-top: 1px solid #ddd;
 }
+
 .chat.incoming {
   justify-content: flex-start;
   margin-bottom: 10px; 
@@ -357,6 +362,7 @@ header h2 {
 .chat i.material-icons {
   margin-right: 5px;
 }
+
 .chatbot .chat-input textarea {
   height: 55px;
   width: 100%;

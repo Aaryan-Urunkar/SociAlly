@@ -51,7 +51,9 @@
             <button
               type="button"
               class="btn btn-outline-light sign-up"
-              onclick="showOptions()"
+
+              onclick="location.href='/login/'"
+
             >
               Sign Up
             </button>
@@ -173,7 +175,9 @@
   ></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script>
+
           const chatbox = document.querySelector('.chatbox');
+
       const showOptions = () => {
         const loginOptions = document.querySelector('.login-options');
         if(loginOptions.style.display == "flex") {
@@ -182,6 +186,19 @@
         }
         loginOptions.style.display="flex";
       }
+
+      document.addEventListener("DOMContentLoaded", function() {
+         const chatbotTogglers = document.querySelectorAll(".chatbot-toggler");
+         const chatbot = document.querySelector(".chatbot");
+      
+         chatbotTogglers.forEach(function(toggler) {
+            toggler.addEventListener("click", function() {
+              chatbot.classList.toggle("show-chatbot");
+              document.body.classList.toggle("show-chatbot");
+            });
+         });
+      });
+
       const fetchButton = document.getElementById("fetchButton");
       const contentDiv = document.getElementById("content");
       const loader = document.getElementById('loader');
@@ -263,6 +280,7 @@ fetchButton.addEventListener("click", async ()=> {
     });
     const data = await response.json();
 });
+
     </script>
   </body>
 </html>

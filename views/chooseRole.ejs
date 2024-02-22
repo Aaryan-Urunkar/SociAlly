@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socially | Choose</title>
+    <link rel="icon" href="/SociAlly/Assets/favicon.png" type="image/x-icon" />
+    <script
+      src="https://kit.fontawesome.com/de9ca8d89e.js"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Inria+Sans&display=swap');
+      :root {
+        --background: #1b4141;
+        --primary: #96e7e7;
+        --primary-hover: #78afaf;
+        --secondary: #188b8b;
+        --secondary-hover: #116464;
+        --accent: #30e5e5;
+        --font-color: #ecf8f8;
+        --font-color-deselect: rgba(236, 248, 248, 0.53);
+        --option: #188b8b4d;
+        --option-selected: #188b8b;
+      }
+
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background-color: var(--background);
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: -15%;
+      }
+      h2 {
+        color: var(--font-color);
+        font-family: 'Fira Sans', sans-serif;
+      }
+      .choices {
+        font-family: 'Inria Sans', sans-serif;
+        color: var(--font-color);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 40vh;
+        width: 25vw;
+      }
+      .choice {
+        border-radius: 0.8rem;
+        display: flex;
+        font-size: 2rem;
+        padding: 3%;
+        justify-content: space-evenly;
+        background-color: var(--option);
+        transition: background 300ms ease-in-out;
+        cursor: pointer;
+      }
+      .choice:hover {
+        background-color: #188b8b;
+      }
+      .home {
+        position: absolute;
+        font-size: 1.3rem;
+        top: 1.5rem;
+        right: 2rem;
+        color: var(--font-color);
+        cursor: pointer;
+      }
+      .home:hover {
+        color: var(--accent);
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Choose what you want to do</h2>
+    <div class="choices">
+      <div class="volunteer choice" onclick="getDash('vol')">
+        <div class="icon"><i class="fa-solid fa-user"></i></div>
+        <div class="text">I want to volunteer</div>
+      </div>
+      <div class="ngo choice" onclick="getDash('ngo')">
+        <div class="icon"><i class="fa-solid fa-users"></i></div>
+        <div class="text">I want to hold events</div>
+      </div>
+    </div>
+    <div class="home" onclick="returnHome()">
+      <i class="fa-solid fa-house-chimney"></i>
+    </div>
+  </body>
+  <script>
+    const getDash = async (role) => {
+      console.log(role);
+      if (role == 'vol') {
+        location.href = '/dashboard';
+      } else if (role == 'ngo') {
+        location.href = '/ngo-dashboard';
+      }
+    };
+    const returnHome = async () => {
+      console.log('hi');
+      location.href = '/index';
+    };
+  </script>
+</html>
