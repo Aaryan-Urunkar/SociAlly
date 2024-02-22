@@ -5,7 +5,7 @@ const UserModel = require('./model/User');
 
 const NgoModel = require('./model/NGOs');
 const { lightFormat } = require('date-fns');
-const { auth } = require('express-openid-connect');
+
 
 const { auth } = require('express-openid-connect');
 const cors = require('cors');
