@@ -3,13 +3,21 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const UserModel = require('./model/User');
 const { auth } = require('express-openid-connect');
-
+const cors = require('cors');
+const { GoogleGenerativeAI } = require('@google/generative-ai');
+const http = require('http');
+const socketIo = require('socket.io');
+const path = require('path');
 require('dotenv').config();
+const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
 const uri = `mongodb+srv://Oren:${process.env.MONGOPASS}@socially.whgla2v.mongodb.net/socially?retryWrites=true&w=majority`;
 const app = express();
 const port = 3000;
-
+const corsOptions = {
+  origin: "*", // Allow all origins
+  credentials: true // Enable credentials
+};
 async function connect() {
   try {
     await mongoose.connect(uri);
@@ -19,6 +27,21 @@ async function connect() {
   }
 }
 connect();
+let socket;
+app.use(cors(corsOptions));
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
+const server = http.createServer(app);
+const io = socketIo(server, {
+  cors: corsOptions 
+});
+io.on('connection', (socketConnection) => {
+  console.log('client connected');
+  socket=socketConnection;
+  socket.on('disconnect', () => {
+    console.log('Client disconnected');
+  });
+});
 
 async function saveUser(userFlag, username, email) {
   if (userFlag) {
@@ -152,39 +175,81 @@ app.put('/add-user-group/:group', async (req, res) => {
 });
 
 app.put('/add-user-ngo/:ngo', async (req, res) => {
+  try {
+    const ngo = JSON.parse(req.params.ngo);
+    //console.log('Parsed NGO:', ngo);
 
-  const ngo = JSON.parse(req.params.ngo);
+    const locationInfo = req.oidc.user.email;
+    let userNgos = [];
+    await UserModel.findOne({ email: locationInfo }).then((user) => {
+      userNgos = user.ngos;
+      //console.log('User NGOs:', userNgos);
+    });
 
-  const locationInfo = req.oidc.user.email;
-  let userNgos = 0;
-  await UserModel.findOne({ email: locationInfo }).then((user) => {
-    userNgos = user.ngos;
-  });
-  if (userNgos.find((userNgo) => userNgo.title == ngo.title)) {
-    console.log('Exists already');
-  } else {
-    await UserModel.findOneAndUpdate(
-      { email: locationInfo },
-      { $push: { ngos: ngo } }
-    ).then(() => console.log('Added ngo'));
+    if (userNgos.find((userNgo) => userNgo.title == ngo.title)) {
+      //console.log('NGO already exists');
+      res.send('NGO already exists');
+    } else {
+      await UserModel.findOneAndUpdate(
+        { email: locationInfo },
+        { $push: { ngos: ngo } }
+      );
+      //console.log('NGO added successfully');
+      res.send('NGO added successfully');
+    }
+  } catch (error) {
+    //console.error('Error adding NGO:', error);
+    res.status(500).send('Error adding NGO');
   }
 });
+const generationConfig = {
+  stopSequences: ["red"],
+  maxOutputTokens: 5,
+  temperature: 0.9,
+  topP: 0.1,
+  topK: 16,
+};
 
-app.post('/', async (req, res) => {
-  const prompt = req.body.prompt.trim();
+const model = genAI.getGenerativeModel({ model: "MODEL_NAME",  generationConfig });
 
+app.post('/generate', async (req, res) => {
+  const { base64Image, prompt } = req.body
+  // console.log(base64Image, prompt);
+  const imagePart = {
+    inlineData: {
+      data: base64Image,
+      mimeType: 'image/png'
+    },
+  };
   try {
-    const aiResponse = await getResponse(prompt);
-
-    const userMessage = userDiv(prompt);
-    const botMessage = userDiv(aiResponse);
-
-    res.send(`
-      ${userMessage}
-      ${botMessage}
-    `);
-  } catch (error) {
-    console.error('Error:', error);
-    res.status(500).send('Internal Server Error');
+    let result
+    if(base64Image){
+      const model = genAI.getGenerativeModel({ model: "gemini-pro-vision"});
+      result = await model.generateContentStream([prompt, imagePart]);
+    } else {
+      const model = genAI.getGenerativeModel({ model: "gemini-pro" , generationConfig});
+      result = await model.generateContentStream(prompt);
+    }
+    
+    let text = '';
+    for await (const chunk of result.stream) {
+      const chunkText = chunk.text();
+      console.log(chunkText);
+      text += chunkText;
+      if (socket) {
+        try {
+          socket.emit('content', chunkText);
+        } catch (error) {
+          console.error('Error emitting content:', error.message);
+        }
+      }
+    }
+    if (socket) {
+      socket.disconnect();
+    }
+    res.status(200).json({message:"success"});
+  } catch (err) {
+    console.error('Error generating content:', err.message);
+    res.status(500).json({ error: 'Error generating content' });
   }
 });
