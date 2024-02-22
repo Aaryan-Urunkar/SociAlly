@@ -133,8 +133,8 @@ node.js and npm should be installed.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-[Vercel Link to running website](https://soci-ally-git-main-aaryan-urunkars-projects.vercel.app/)
-[Github pages link to running website](https://aaryan-urunkar.github.io/SociAlly/)
+[Website Link]()
+
 
 
 <p align="right">(<a href="#readme-top">Back To Top</a>)</p>
@@ -146,7 +146,7 @@ node.js and npm should be installed.
 
 - [x] Transition to nodejs/express
 - [ ] Auto API updates to get new NGO activites by collaborating with NGO's
-- [ ] Full account authentication
+- [x] Full account authentication
 - [ ] Reward System and Leaderboard to work.
       
 
