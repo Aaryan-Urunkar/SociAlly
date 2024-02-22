@@ -20,6 +20,21 @@ h6 {
   transition-delay: 0.3s;
   opacity: 0;
 }
+
+.message {
+  background-color: white;
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.chat .message {
+  padding: 10px;
+  background-color: #eee;
+  border-radius: 10px;
+}
+
+
 .animateLeftDisabled {
   transform: translateX(-100%);
   transition-property: all;
@@ -65,6 +80,34 @@ h6 {
 .nav-link {
   color: white;
 }
+
+.me-4 {
+  position: relative;
+}
+.login-options {
+  position: absolute;
+  top: 3rem;
+  left: -23%;
+  display: none;
+  width: 150%;
+  height: 5rem;
+  padding: 0.7rem;
+  border-radius: 0.5rem;
+  background-color: #032020;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.login-options > div {
+  font-size: 0.85rem;
+  padding: 0.2rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+.login-options > div:hover {
+  background-color: #30e5e529;
+}
+
 /* Navbar Styling Over */
 /* Section 1 styling */
 .section.default-bg {
@@ -303,6 +346,23 @@ header h2 {
   padding: 3px 20px;
   border-top: 1px solid #ddd;
 }
+
+.chat.incoming {
+  justify-content: flex-start;
+  margin-bottom: 10px; 
+}
+.chat.outgoing {
+  justify-content: flex-end;
+}
+
+.chat.incoming .message {
+  background-color: #fff
+}
+
+.chat i.material-icons {
+  margin-right: 5px;
+}
+
 .chatbot .chat-input textarea {
   height: 55px;
   width: 100%;
