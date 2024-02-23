@@ -24,14 +24,7 @@ const corsOptions = {
   origin: "*", // Allow all origins
   credentials: true // Enable credentials
 };
-async function connect() {
-  try {
-    await mongoose.connect(uri);
-    console.log('Connected to MongoDB');
-  } catch (e) {
-    console.error(e);
-  }
-}
+
 connect();
 let socket;
 app.use(cors(corsOptions));
@@ -113,36 +106,29 @@ app.set('view engine', 'ejs');
 
 
 app.get(['', '/home'], async (req, res) => {
-
-
   if (req.oidc.isAuthenticated()) {
-    await UserModel.findOne({
+    const user = await UserModel.findOne({
       username: req.oidc.user.name,
       email: req.oidc.user.email,
-    })
-      .then((user) => {
-        if (user) {
-          res.redirect('/dashboard');
-          return;
-        }
-      })
-      .catch((err) => console.log(err));
-    await NgoModel.findOne({
+    }).catch((err) => console.log(err));
+
+    const ngo = await NgoModel.findOne({
       username: req.oidc.user.name,
       email: req.oidc.user.email,
-    })
-      .then((user) => {
-        if (user) {
-          res.redirect('/ngo-dashboard');
-          return;
-        }
-      })
-      .catch((err) => console.log(err));
-    res.render('chooseRole');
+    }).catch((err) => console.log(err));
+
+    if (user) {
+      return res.redirect('/dashboard');
+    } else if (ngo) {
+      return res.redirect('/ngo-dashboard');
+    } else {
+      return res.render('chooseRole');
+    }
   } else {
-    res.render('index');
+    return res.render('index');
   }
 });
+
 app.get('/callback', (req, res) => {
   res.redirect('/dashboard');
 });
@@ -361,7 +347,7 @@ app.post('/', async (req, res) => {
 });
 
     //console.error('Error adding NGO:', error);
-    res.status(500).send('Error adding NGO');
+    //res.status(500).send('Error adding NGO');
   }
 });
 const generationConfig = {
