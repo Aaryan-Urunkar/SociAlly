@@ -31,11 +31,14 @@ applyButton.addEventListener('click', async () => {
     localStorage.getItem('targetTime'),
     localStorage.getItem('targetLoc')
   );
-  console.log(newNgo);
+
   const data = JSON.stringify(newNgo);
+  console.log(data);
   await fetch(`/add-user-ngo/${data}`, {
     method: 'PUT',
   })
-    .then(() => (location.href = '/finalPage'))
+    .then(() => {
+      location.href = '/finalPage';
+    })
     .catch((error) => console.error(error));
 });

@@ -263,7 +263,7 @@ app.put('/add-user-group/:group', async (req, res) => {
 app.post('/add-ngo-event/:event', async (req, res) => {
   const event = JSON.parse(req.params.event);
   //Formating date and time
-  event.date = lightFormat(new Date(event.date), 'dd/MM/yyyy');
+  event.date = lightFormat(new Date(event.date), 'dd-MM-yyyy');
   const dateArray = event.time.split(':');
   event.time = lightFormat(
     new Date(2000, 1, 1, dateArray[0], dateArray[1]),
@@ -289,7 +289,6 @@ app.post('/add-ngo-event/:event', async (req, res) => {
 app.put('/add-user-ngo/:ngo', async (req, res) => {
   try {
     const ngo = JSON.parse(req.params.ngo);
-    console.log('Parsed NGO:', ngo);
     const locationInfo = req.oidc.user.email;
     let userNgos = [];
     await UserModel.findOne({ email: locationInfo }).then((user) => {
@@ -330,7 +329,6 @@ const model = genAI.getGenerativeModel({
   model: 'MODEL_NAME',
   generationConfig,
 });
-
 app.post('/generate', async (req, res) => {
   const { base64Image, prompt } = req.body;
   // console.log(base64Image, prompt);

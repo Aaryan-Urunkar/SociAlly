@@ -4,7 +4,7 @@ body {
 .megaContainer {
   display: flex;
   flex-direction: column;
-
+  align-items: center;
   justify-content: center;
   background-color: #1b4242;
   margin: auto;
@@ -151,18 +151,33 @@ h2 {
 }
 #img-and-details .left .component span {
   font-family: 'Fira Sans', sans-serif;
-  color: #1b4242;
+}
+.component {
+  display: flex;
+  width: 30%;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10%;
+  transform: transform 300ms ease-in-out;
+}
+.component:hover {
+  transform: scale(1.02);
+}
+.component span,
+i {
+  font-size: 1.6rem;
 }
 .left {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ecf8f8;
   width: 50%;
-
-  background-color: #30e5e5;
+  background-color: #188b8b;
   border-radius: 20px;
   height: 300px;
   display: flex;
   flex-direction: column;
-
-  padding-left: 2%;
   justify-content: space-around;
 }
 .split {
@@ -178,7 +193,7 @@ h2 {
   height: 300px;
   width: auto;
 }
-#ENROLL a {
+#ENROLL {
   width: 30%;
   display: flex;
   justify-content: center;
@@ -186,10 +201,4 @@ h2 {
 }
 #target {
   margin-left: 0.5rem;
-}
-.component {
-  margin-left: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
 }
