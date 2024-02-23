@@ -212,8 +212,8 @@ body {
   align-items: center;
   justify-content: start;
   border-radius: 2%;
-  height: 70vh;
-  width: 30vw;
+  height: max(540px, 70vh);
+  width: max(500px, 30vw);
   background-color: var(--background);
 }
 .close {
@@ -238,6 +238,7 @@ form {
 
 input,
 textarea {
+  font-family: 'Inria Sans', sans-serif;
   font-size: 1.2rem;
   background-color: var(--secondary);
   border: none;
@@ -262,6 +263,10 @@ textarea:focus {
 .description-input,
 .location-input {
   padding-left: 10px;
+}
+.title-input,
+.location-input {
+  min-height: 2rem;
 }
 .time-input,
 .date-input {

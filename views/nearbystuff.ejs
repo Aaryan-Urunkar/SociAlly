@@ -1,362 +1,561 @@
 <!DOCTYPE html>
 <html>
-   <head>
-      <link rel="icon" href="img/favicon.png" type="image/x-icon">
-      <title>SociAlly | Volunteer Us </title>
-      <style>
-         body {
-         background-color: #1b4242;
-         }
-         .grid-container {
-         display: grid;
-         grid-template-columns: repeat(3, 1fr);
-         grid-gap: 20px;
-         padding: 20px;
-         }
-         .grid-item {
-         padding: 20px;
-         text-align: center;
-         opacity: 1;
-         order: -1;
-         transition: opacity 0.5s ease-in-out, order 0.5s ease-in-out;
-         border-radius: 10px;
-         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-         cursor: pointer; 
-         background-color: #086565;
-         }
-         .grid-item:hover {
-         transform: scale(1.05);
-         box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-         }
-         h2 {
-         font-size: 18px;
-         margin-bottom: 10px;
-         color: #fff;
-         font-family: "Fira Sans", sans-serif;
-         }
-         p {
-         font-size: 14px;
-         color: #fff;   
-         font-family: "Inria Sans", sans-serif;
-         }
-         #noResults {
-         display: none;
-         text-align: center;
-         font-size: 16px;
-         color: red;
-         margin-top: 20px;
-         }
-         @import url('https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@700&display=swap');
-         .header {
-         display: flex;
-         justify-content: space-between;
-         align-items: center;
-         padding: 20px;
-         background-color: #1b4242;
-         font-family: 'M PLUS 2', sans-serif;
-         font-weight: bold; 
-         color : #fff;
-         }
-         .header h1 {
-         font-size: 24px;
-         margin: 0;
-         font-family: 'M PLUS 2', sans-serif;
-         }
-         .header button {
-         padding: 10px 20px;
-         font-size: 16px;
-         background-color: #4CAF50;
-         color: white;
-         border: none;
-         border-radius: 5px;
-         cursor: pointer;
-         }
-         .search-box {
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         margin-top: 20px;
-         }
-         .search-input {
-         padding: 10px;
-         font-size: 16px;
-         border-radius: 50px;
-         border: none;
-         outline: none;
-         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-         width: 300px;
-         text-align: center;
-         caret-color: transparent;
-         background-color: #086565;
-         color : #fff;
-         }
-         @media (min-width: 768px) {
-         .grid-container {
-         grid-template-columns: repeat(3, 1fr);
-         }
-         }
-         @media (min-width: 1024px) {
-         .grid-container {
-         grid-template-columns: repeat(4, 1fr);
-         }
-         }
-         @media (min-width: 1500px) {
-         .grid-container {
-         grid-template-columns: repeat(5, 1fr);
-         }
-         }
-      </style>
-      <script>
-         function searchNGO() {
-             var input, filter, gridItems, h2, i, txtValue;
-             input = document.getElementById("searchInput");
-             filter = input.value.toUpperCase().split(" ");
-             gridItems = document.getElementsByClassName("grid-item");
-             var noResults = document.getElementById("noResults");
-             var resultsFound = false;
-             
-             for (i = 0; i < gridItems.length; i++) {
-                 h2 = gridItems[i].getElementsByTagName("h2")[0];
-                 txtValue = h2.textContent || h2.innerText;
-                 var matchCount = 0;
-                 for (var j = 0; j < filter.length; j++) {
-                     if (txtValue.toUpperCase().indexOf(filter[j]) > -1) {
-                         matchCount++;
-                     }
-                 }
-                 if (matchCount === filter.length) {
-                     gridItems[i].style.opacity = "1";
-                     gridItems[i].style.order = "-1";
-                     resultsFound = true;
-                 } else {
-                     gridItems[i].style.opacity = "0";
-                     gridItems[i].style.order = "0";
-                 }
-             }
-             
-             if (!resultsFound) {
-                 noResults.style.display = "block";
-             } else {
-                 noResults.style.display = "none";
-             }
-         }
-         
-         function redirectToPage(url) {
-             window.location.href = url;
-         }
-         
-         function clearSearchInput() {
-             var input = document.getElementById("searchInput");
-             input.value = "";
-         }
-         document.addEventListener('DOMContentLoaded', function() {
-             document.querySelectorAll('.grid-item').forEach(gridItem => {
-                 gridItem.addEventListener('click', function() {
-                     let h2Text = this.querySelector('h2').innerText;
-                     let pText = this.querySelector('p').innerText;
-                     let date = this.getAttribute('data-date');
-                     let location = this.getAttribute('data-location');
-                     let time = this.getAttribute('data-time');
-                     localStorage.setItem('h2Text', h2Text);
-                     localStorage.setItem('pText', pText);
-                     localStorage.setItem('targetLoc', location);
-                     localStorage.setItem('targetDate', date);
-                     localStorage.setItem('targetTime', time);
-                 });
-             });
-         });
-        
-      </script>
-   </head>
-   <body>
-      <div class="header">
-         <h1 style="font-family: 'Fira Sans', sans-serif;">Where Do You Want To Volunteer Today?</h1>
-         
+  <head>
+    <link rel="icon" href="img/favicon.png" type="image/x-icon" />
+    <title>SociAlly | Volunteer</title>
+    <style>
+      body {
+        background-color: #1b4242;
+      }
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 20px;
+        padding: 20px;
+      }
+      .grid-item {
+        padding: 20px;
+        text-align: center;
+        opacity: 1;
+        order: -1;
+        transition: opacity 0.5s ease-in-out, order 0.5s ease-in-out;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        background-color: #086565;
+      }
+      .grid-item:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      }
+      h2 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: #fff;
+        font-family: 'Fira Sans', sans-serif;
+      }
+      p {
+        font-size: 14px;
+        color: #fff;
+        font-family: 'Inria Sans', sans-serif;
+      }
+      #noResults {
+        display: none;
+        text-align: center;
+        font-size: 16px;
+        color: red;
+        margin-top: 20px;
+      }
+      @import url('https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@700&display=swap');
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px;
+        background-color: #1b4242;
+        font-family: 'M PLUS 2', sans-serif;
+        font-weight: bold;
+        color: #fff;
+      }
+      .header h1 {
+        font-size: 24px;
+        margin: 0;
+        font-family: 'M PLUS 2', sans-serif;
+      }
+      .header button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .search-box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+      }
+      .search-input {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 50px;
+        border: none;
+        outline: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        text-align: center;
+        caret-color: transparent;
+        background-color: #086565;
+        color: #fff;
+      }
+      @media (min-width: 768px) {
+        .grid-container {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+      @media (min-width: 1024px) {
+        .grid-container {
+          grid-template-columns: repeat(4, 1fr);
+        }
+      }
+      @media (min-width: 1500px) {
+        .grid-container {
+          grid-template-columns: repeat(5, 1fr);
+        }
+      }
+    </style>
+    <script>
+      function searchNGO() {
+        var input, filter, gridItems, h2, i, txtValue;
+        input = document.getElementById('searchInput');
+        filter = input.value.toUpperCase().split(' ');
+        gridItems = document.getElementsByClassName('grid-item');
+        var noResults = document.getElementById('noResults');
+        var resultsFound = false;
+
+        for (i = 0; i < gridItems.length; i++) {
+          h2 = gridItems[i].getElementsByTagName('h2')[0];
+          txtValue = h2.textContent || h2.innerText;
+          var matchCount = 0;
+          for (var j = 0; j < filter.length; j++) {
+            if (txtValue.toUpperCase().indexOf(filter[j]) > -1) {
+              matchCount++;
+            }
+          }
+          if (matchCount === filter.length) {
+            gridItems[i].style.opacity = '1';
+            gridItems[i].style.order = '-1';
+            resultsFound = true;
+          } else {
+            gridItems[i].style.opacity = '0';
+            gridItems[i].style.order = '0';
+          }
+        }
+
+        if (!resultsFound) {
+          noResults.style.display = 'block';
+        } else {
+          noResults.style.display = 'none';
+        }
+      }
+      const events = (function () {
+        const fetchEvents = async () => {
+          let eventsArr = [];
+          await fetch('/get-events', {
+            method: 'GET',
+          })
+            .then((res) => res.json())
+            .then((data) => data.map((event) => eventsArr.push(event)))
+            .catch((err) => console.error(err));
+          return eventsArr;
+        };
+        const createEvent = (title, description, date, location, time) => {
+          console.log(description);
+          const gridContainer = document.querySelector('.grid-container');
+          const gridItem = document.createElement('div');
+          gridItem.classList.add('grid-item');
+          const titleDiv = document.createElement('h2');
+          const descriptionDiv = document.createElement('p');
+          titleDiv.textContent = title;
+          descriptionDiv.textContent = description;
+          gridItem.setAttribute('data-date', date);
+          gridItem.setAttribute('data-time', time);
+          gridItem.setAttribute('data-location', location);
+          gridItem.addEventListener('click', (e) => {
+            getInfo(e);
+            redirectToPage('/enroll');
+          });
+          gridItem.append(titleDiv, descriptionDiv);
+          gridContainer.appendChild(gridItem);
+        };
+        const addEvents = async () => {
+          let events = 0;
+          events = await fetchEvents();
+          events.forEach((event) =>
+            createEvent(
+              event.title,
+              event.description,
+              event.date,
+              event.location,
+              event.time
+            )
+          );
+        };
+        return { addEvents };
+      })();
+      events.addEvents();
+      function redirectToPage(url) {
+        window.location.href = url;
+      }
+
+      function getInfo(e) {
+        let h2Text = e.target.querySelector('h2').innerText;
+        let pText = e.target.querySelector('p').innerText;
+        let date = e.target.getAttribute('data-date');
+        let location = e.target.getAttribute('data-location');
+        let time = e.target.getAttribute('data-time');
+        localStorage.setItem('h2Text', h2Text);
+        localStorage.setItem('pText', pText);
+        localStorage.setItem('targetLoc', location);
+        localStorage.setItem('targetDate', date);
+        localStorage.setItem('targetTime', time);
+      }
+      function clearSearchInput() {
+        var input = document.getElementById('searchInput');
+        input.value = '';
+      }
+      document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('.grid-item').forEach((gridItem) => {
+          gridItem.addEventListener('click', function () {
+            let h2Text = this.querySelector('h2').innerText;
+            let pText = this.querySelector('p').innerText;
+            let date = this.getAttribute('data-date');
+            let location = this.getAttribute('data-location');
+            let time = this.getAttribute('data-time');
+            localStorage.setItem('h2Text', h2Text);
+            localStorage.setItem('pText', pText);
+            localStorage.setItem('targetLoc', location);
+            localStorage.setItem('targetDate', date);
+            localStorage.setItem('targetTime', time);
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="header">
+      <h1 style="font-family: 'Fira Sans', sans-serif">
+        Where Do You Want To Volunteer Today?
+      </h1>
+    </div>
+    <div class="search-box">
+      <input
+        type="text"
+        id="searchInput"
+        onfocus="clearSearchInput()"
+        onkeyup="searchNGO()"
+        placeholder="Search for what you want to do..."
+        class="search-input"
+        style="
+          color: white;
+          ::placeholder {
+            color: white;
+            opacity: 1;
+          }
+        "
+      />
+    </div>
+    <div class="grid-container">
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Akshara Centre</h2>
+        <p>
+          Akshara empowers women to be aware their rights, live without threats
+          of violence within their homes and communities and build necessary
+          skills to ensure well-being for themselves and their families. Young
+          women are given financial aid to complete higher education as well.
+          The Foundation also conducts gender education presentations at info
+          fairs, educational institutions, and community interactions.
+        </p>
       </div>
-      <div class="search-box">
-         <input type="text" id="searchInput" onfocus="clearSearchInput()" onkeyup="searchNGO()" placeholder="Search for what you want to do..." class="search-input" style="color: white;::placeholder { color: white; opacity: 1; }">
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>
+          ALERT-INDIA Association for Leprosy education, Rehabilitation &
+          Treatment India
+        </h2>
+        <p>
+          The organisation works on the identification, prevention, and
+          treatment of Leprosy in communities around Mumbai suburbs and rural
+          areas. They do this through screening camps in schools as well as
+          communities. Once the disease is identified, patients are guided to
+          Leprosy Referral Centres for further follow up.
+        </p>
       </div>
-      <div class="grid-container">
-         <div class="grid-item" onclick="redirectToPage('/enroll')">
-            <h2>Akshara Centre</h2>
-            <p>Akshara empowers women to be aware their rights, live without threats of violence within their homes and communities and build necessary skills to ensure well-being for themselves and their families. Young women are given financial aid to complete higher education as well. The Foundation also conducts gender education presentations at info fairs, educational institutions, and community interactions.
-            </p>
-         </div>
-         <div class="grid-item" onclick="redirectToPage('/enroll')" >
-            <h2>ALERT-INDIA Association for Leprosy education, Rehabilitation & Treatment India</h2>
-            <p>The organisation works on the identification, prevention, and treatment of Leprosy in communities around Mumbai suburbs and rural areas. They do this through screening camps in schools as well as communities. Once the disease is identified, patients are guided to Leprosy Referral Centres for further follow up.
-            </p>
-            
-         </div>
-         <div class="grid-item" onclick="redirectToPage('/enroll')">
-            <h2>Annamrita-ISKCON Food Relief Foundation Children</h2>
-            <p>Annamrita is the strategic Mid Day Meal Programme by the government of India and run by IKSCON Food Relief Foundation, which aims to liberate the unprivileged children from malnourishment and illiteracy.
-            </p>
-         </div>
-         <div class="grid-item" onclick="redirectToPage('/enroll')">
-            <h2>Antarang Foundation</h2>
-            <p>Antarang envisions a world where every young person is productively, positively and passionately engaged in a vocation of their choice.
-            </p>
-         </div>
-         <div class="grid-item" onclick="redirectToPage('/enroll')">
-            <h2>Apnalaya</h2>
-            <p> It aims to empower the disadvantaged to overcome the social, political and economic barriers and help them lead a better quality of life. They work with the most marginalized people dwelling in the slums of Mumbai. There are 4,200 children under 6 years of age at the center of Apnalaya’s Health Program.</p>
-         </div>
-         <div class="grid-item" onclick="redirectToPage('/enroll')">
-            <h2>Mazi Sainik Shikshan Ani Swasthya Kalyan Sanstha</h2>
-            <p>Supporting the health and education needs of military personnel and their families.</p>
-         </div>
-         <div class="grid-item" onclick="redirectToPage('/enroll')">
-            <h2>National Association for the Blind, India</h2>
-            <p>Empowering visually impaired individuals through education and support services.</p>
-         </div>
-         <div class="grid-item" onclick="redirectToPage('/enroll')">
-            <h2>National Society for Equal Opportunities for the Handicapped</h2>
-            <p>Promoting equal opportunities and rights for people with disabilities.</p>
-         </div>
-         <div class="grid-item" onclick="redirectToPage('/enroll')">
-            <h2>MESCO Modern Educational Social & Cultural Organization</h2>
-            <p>Advancing education, social, and cultural initiatives for community development.</p>
-         </div>
-         <div class="grid-item" onclick="redirectToPage('/enroll')">
-            <h2>Salaam Bombay Foundation</h2>
-            <p>SBF is focused on engaging Mumbai's most vulnerable "at risk" children through in-school programmes (leadership and advocacy) and after-school academies (skill building) that help build their confidence, self-esteem and commit them to stay in school while staying tobacco-free.
-            </p>
-         </div>
-         <div class="grid-item" onclick="redirectToPage('/enroll')">
-            <h2>Akanksha Foundation</h2>
-            <p>Empowering children from marginalized communities through holistic education and life skills development.</p>
-         </div>
-         <div class="grid-item" onclick="redirectToPage('/enroll')">
-         <h2>Pratham</h2>
-            <p>Creating a world where every child has access to quality education</p>
-         </div>
-            
-            <div class="grid-item" onclick="redirectToPage('/enroll')">
-               <h2>Goonj</h2>
-               <p>Tackling poverty and disasters through cloth collection and distribution, rural development, and emergency relief.</p>
-            </div>
-            <div class="grid-item" onclick="redirectToPage('/enroll')">
-               <h2>Stree Mukti Sanghatana</h2>
-               <p>Advocating for women's rights and empowerment through legal aid, shelter homes, vocational training, and policy advocacy.</p>
-            </div>
-            <div class="grid-item" onclick="redirectToPage('/enroll')">
-               <h2>Aasra</h2>
-               <p>Promoting mental health awareness and providing affordable, accessible mental healthcare services and support groups.</p>
-            </div>
-            <div class="grid-item" onclick="redirectToPage('/enroll')">
-               <h2>Teach For India</h2>
-               <p>Empowering underserved schools through passionate teachers who commit to two years of service, advocating for educational reforms.</p>
-            </div>
-            <div class="grid-item" onclick="redirectToPage('/enroll')">
-               <h2>The Leprosy Mission Trust India</h2>
-               <p>Working towards a leprosy-free world through patient care, rehabilitation, awareness campaigns, and advocacy for their rights.</p>
-            </div>
-            <div class="grid-item" onclick="redirectToPage('/enroll')">
-               <h2>Bombay Mothers & Children Welfare Society</h2>
-               <p>Providing healthcare, education, and vocational training to disadvantaged mothers and children, empowering them for a better life.</p>
-            </div>
-            <div class="grid-item" onclick="redirectToPage('/enroll')">
-               <h2>Habitat for Humanity India</h2>
-               <p>Building or improving affordable housing with families and volunteers, advocating for housing rights, and promoting community development.</p>
-            </div>
-            <div class="grid-item" onclick="redirectToPage('/enroll')">
-               <h2>Snehalaya</h2>
-               <p>Offering a loving home and holistic development for orphaned, abandoned, and neglected children through residential care, education, and adoption.</p>
-            </div>
-            <div class="grid-item" onclick="redirectToPage('/enroll')">
-               <h2>Prayas Foundation</h2>
-               <p>Empowering underprivileged communities through education, healthcare, skill development, and environmental initiatives.</p>
-            </div>
-            <div class="grid-item" onclick="redirectToPage('/enroll')">
-               <h2>Udayan Children's Home</h2>
-               <p>Providing shelter, education, and life skills training to orphans and vulnerable children, fostering their well-being and independence.</p>
-            </div>
-            <div class="grid-item" onclick="redirectToPage('/enroll')">
-               <h2>Majlis Manch</h2>
-               <p>Empowering marginalized communities through education, healthcare, and livelihood development programs, focusing on women and children.</p>
-            </div>
-            <div class="grid-item" onclick="redirectToPage('/enroll')">
-               <h2>Foundation for Mother and Child Health (FMCH)</h2>
-               <p>Providing comprehensive healthcare services and medical education for mothers and children from underserved communities.</p>
-            </div>
-            <div class="grid-item" onclick="redirectToPage('/enroll')">
-               <h2>Concern India Foundation</h2>
-               <p>Working towards poverty alleviation and sustainable development through rural development programs, disaster relief, and livelihood initiatives.</p>
-            </div>
-            <div class="grid-item" onclick="redirectToPage('/enroll')">
-               <h2>Light of Life Trust</h2>
-               <p>Offering palliative care and support to terminally ill patients, promoting dignity and comfort in their final journey.</p>
-            </div>
-            <div class="grid-item" onclick="redirectToPage('/enroll')">
-               <h2>Khaana Chahiye Foundation</h2>
-               <p>Combating hunger and malnutrition through food rescue, distribution, and awareness campaigns, providing meals to underserved communities.</p>
-            </div>
-            <div class="grid-item" onclick="redirectToPage('/enroll')">
-               <h2>Sparsha Charitable Trust</h2>
-               <p>Working with street children and vulnerable youth, providing education, vocational training, and life skills development for a brighter future.</p>
-            </div>
-            <div class="grid-item" onclick="redirectToPage('/enroll')">
-               <h2>Swades Foundation</h2>
-               <p>Promoting environmental sustainability and rural development through community-based initiatives, focusing on water conservation and sanitation.</p>
-            </div>
-            <div class="grid-item" onclick="redirectToPage('/enroll')">
-               <h2>Dignity Foundation</h2>
-               <p>Empowering transgender communities through healthcare, education, skill development, and advocacy for equal rights and opportunities.</p>
-            </div>
-            <div class="grid-item" onclick="redirectToPage('/enroll')">
-               <h2>Apnalaya Aasha Sadan</h2>
-               <p>Providing residential care, education, and vocational training for orphaned and abandoned girls, guiding them towards independence and self-reliance.</p>
-            </div>
-            <div class="grid-item" onclick="redirectToPage('/enroll')">
-               <h2>YUVA India</h2>
-               <p>Engaging youth in social change through leadership development programs, addressing education, environmental, and health challenges.</p>
-            </div>
-   
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Annamrita-ISKCON Food Relief Foundation Children</h2>
+        <p>
+          Annamrita is the strategic Mid Day Meal Programme by the government of
+          India and run by IKSCON Food Relief Foundation, which aims to liberate
+          the unprivileged children from malnourishment and illiteracy.
+        </p>
       </div>
-      <p id="noResults">No results found.</p>
-      <script>
-          function randomizeDataAttributes() {
-               var gridItems = document.getElementsByClassName("grid-item");
-               
-               for (var i = 0; i < gridItems.length; i++) {
-                  var gridItem = gridItems[i];
-                  var randomDate = getRandomDate();
-                  var randomLocation = getRandomLocation();
-                  var randomTime = getRandomTime();
-                  gridItem.setAttribute("data-date", randomDate);
-                  gridItem.setAttribute("data-location", randomLocation);
-                  gridItem.setAttribute("data-time", randomTime);
-               }
-            }
-            
-            function getRandomDate() {
-               var startDate = new Date();
-               var endDate = new Date();
-               endDate.setDate(endDate.getDate() + 30);
-               
-               var randomTimestamp = startDate.getTime() + Math.random() * (endDate.getTime() - startDate.getTime());
-               var randomDate = new Date(randomTimestamp);
-               
-               return randomDate.toISOString().split("T")[0];
-            }
-            
-            function getRandomLocation() {
-                  var locations = ["Mumbai", "Delhi", "Bangalore", "Chennai", "Kolkata", "Hyderabad", "Pune", "Ahmedabad", "Jaipur", "Lucknow"];
-               var randomIndex = Math.floor(Math.random() * locations.length);
-               
-               return locations[randomIndex];
-            }
-            
-            function getRandomTime() {
-               var hours = Math.floor(Math.random() * 12) + 1;
-               var minutes = Math.floor(Math.random() * 60);
-               var ampm = Math.random() < 0.5 ? "A.M." : "P.M.";
-               
-               return hours.toString().padStart(2, "0") + ":" + minutes.toString().padStart(2, "0") + " " + ampm;
-            }
-            
-            randomizeDataAttributes();
-      </script>
-   </body>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Antarang Foundation</h2>
+        <p>
+          Antarang envisions a world where every young person is productively,
+          positively and passionately engaged in a vocation of their choice.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Apnalaya</h2>
+        <p>
+          It aims to empower the disadvantaged to overcome the social, political
+          and economic barriers and help them lead a better quality of life.
+          They work with the most marginalized people dwelling in the slums of
+          Mumbai. There are 4,200 children under 6 years of age at the center of
+          Apnalaya’s Health Program.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Mazi Sainik Shikshan Ani Swasthya Kalyan Sanstha</h2>
+        <p>
+          Supporting the health and education needs of military personnel and
+          their families.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>National Association for the Blind, India</h2>
+        <p>
+          Empowering visually impaired individuals through education and support
+          services.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>National Society for Equal Opportunities for the Handicapped</h2>
+        <p>
+          Promoting equal opportunities and rights for people with disabilities.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>MESCO Modern Educational Social & Cultural Organization</h2>
+        <p>
+          Advancing education, social, and cultural initiatives for community
+          development.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Salaam Bombay Foundation</h2>
+        <p>
+          SBF is focused on engaging Mumbai's most vulnerable "at risk" children
+          through in-school programmes (leadership and advocacy) and
+          after-school academies (skill building) that help build their
+          confidence, self-esteem and commit them to stay in school while
+          staying tobacco-free.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Akanksha Foundation</h2>
+        <p>
+          Empowering children from marginalized communities through holistic
+          education and life skills development.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Pratham</h2>
+        <p>
+          Creating a world where every child has access to quality education
+        </p>
+      </div>
+
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Goonj</h2>
+        <p>
+          Tackling poverty and disasters through cloth collection and
+          distribution, rural development, and emergency relief.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Stree Mukti Sanghatana</h2>
+        <p>
+          Advocating for women's rights and empowerment through legal aid,
+          shelter homes, vocational training, and policy advocacy.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Aasra</h2>
+        <p>
+          Promoting mental health awareness and providing affordable, accessible
+          mental healthcare services and support groups.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Teach For India</h2>
+        <p>
+          Empowering underserved schools through passionate teachers who commit
+          to two years of service, advocating for educational reforms.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>The Leprosy Mission Trust India</h2>
+        <p>
+          Working towards a leprosy-free world through patient care,
+          rehabilitation, awareness campaigns, and advocacy for their rights.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Bombay Mothers & Children Welfare Society</h2>
+        <p>
+          Providing healthcare, education, and vocational training to
+          disadvantaged mothers and children, empowering them for a better life.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Habitat for Humanity India</h2>
+        <p>
+          Building or improving affordable housing with families and volunteers,
+          advocating for housing rights, and promoting community development.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Snehalaya</h2>
+        <p>
+          Offering a loving home and holistic development for orphaned,
+          abandoned, and neglected children through residential care, education,
+          and adoption.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Prayas Foundation</h2>
+        <p>
+          Empowering underprivileged communities through education, healthcare,
+          skill development, and environmental initiatives.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Udayan Children's Home</h2>
+        <p>
+          Providing shelter, education, and life skills training to orphans and
+          vulnerable children, fostering their well-being and independence.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Majlis Manch</h2>
+        <p>
+          Empowering marginalized communities through education, healthcare, and
+          livelihood development programs, focusing on women and children.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Foundation for Mother and Child Health (FMCH)</h2>
+        <p>
+          Providing comprehensive healthcare services and medical education for
+          mothers and children from underserved communities.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Concern India Foundation</h2>
+        <p>
+          Working towards poverty alleviation and sustainable development
+          through rural development programs, disaster relief, and livelihood
+          initiatives.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Light of Life Trust</h2>
+        <p>
+          Offering palliative care and support to terminally ill patients,
+          promoting dignity and comfort in their final journey.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Khaana Chahiye Foundation</h2>
+        <p>
+          Combating hunger and malnutrition through food rescue, distribution,
+          and awareness campaigns, providing meals to underserved communities.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Sparsha Charitable Trust</h2>
+        <p>
+          Working with street children and vulnerable youth, providing
+          education, vocational training, and life skills development for a
+          brighter future.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Swades Foundation</h2>
+        <p>
+          Promoting environmental sustainability and rural development through
+          community-based initiatives, focusing on water conservation and
+          sanitation.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Dignity Foundation</h2>
+        <p>
+          Empowering transgender communities through healthcare, education,
+          skill development, and advocacy for equal rights and opportunities.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>Apnalaya Aasha Sadan</h2>
+        <p>
+          Providing residential care, education, and vocational training for
+          orphaned and abandoned girls, guiding them towards independence and
+          self-reliance.
+        </p>
+      </div>
+      <div class="grid-item" onclick="redirectToPage('/enroll')">
+        <h2>YUVA India</h2>
+        <p>
+          Engaging youth in social change through leadership development
+          programs, addressing education, environmental, and health challenges.
+        </p>
+      </div>
+    </div>
+    <p id="noResults">No results found.</p>
+    <script>
+      function randomizeDataAttributes() {
+        var gridItems = document.getElementsByClassName('grid-item');
+
+        for (var i = 0; i < gridItems.length; i++) {
+          var gridItem = gridItems[i];
+          var randomDate = getRandomDate();
+          var randomLocation = getRandomLocation();
+          var randomTime = getRandomTime();
+          gridItem.setAttribute('data-date', randomDate);
+          gridItem.setAttribute('data-location', randomLocation);
+          gridItem.setAttribute('data-time', randomTime);
+        }
+      }
+
+      function getRandomDate() {
+        var startDate = new Date();
+        var endDate = new Date();
+        endDate.setDate(endDate.getDate() + 30);
+
+        var randomTimestamp =
+          startDate.getTime() +
+          Math.random() * (endDate.getTime() - startDate.getTime());
+        var randomDate = new Date(randomTimestamp);
+
+        return randomDate.toISOString().split('T')[0];
+      }
+
+      function getRandomLocation() {
+        var locations = [
+          'Mumbai',
+          'Delhi',
+          'Bangalore',
+          'Chennai',
+          'Kolkata',
+          'Hyderabad',
+          'Pune',
+          'Ahmedabad',
+          'Jaipur',
+          'Lucknow',
+        ];
+        var randomIndex = Math.floor(Math.random() * locations.length);
+
+        return locations[randomIndex];
+      }
+
+      function getRandomTime() {
+        var hours = Math.floor(Math.random() * 12) + 1;
+        var minutes = Math.floor(Math.random() * 60);
+        var ampm = Math.random() < 0.5 ? 'A.M.' : 'P.M.';
+
+        return (
+          hours.toString().padStart(2, '0') +
+          ':' +
+          minutes.toString().padStart(2, '0') +
+          ' ' +
+          ampm
+        );
+      }
+
+      randomizeDataAttributes();
+    </script>
+  </body>
 </html>

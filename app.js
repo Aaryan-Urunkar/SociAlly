@@ -6,7 +6,6 @@ const UserModel = require('./model/User');
 const NgoModel = require('./model/NGOs');
 const { lightFormat } = require('date-fns');
 
-
 const { auth } = require('express-openid-connect');
 const cors = require('cors');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
@@ -21,27 +20,28 @@ const uri = `mongodb+srv://Oren:${process.env.MONGOPASS}@socially.whgla2v.mongod
 const app = express();
 const port = 3000;
 const corsOptions = {
-  origin: "*", // Allow all origins
-  credentials: true // Enable credentials
+  origin: '*', // Allow all origins
+  credentials: true, // Enable credentials
 };
 
 connect();
 let socket;
 app.use(cors(corsOptions));
 app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 }));
+app.use(
+  express.urlencoded({ limit: '50mb', extended: true, parameterLimit: 50000 })
+);
 const server = http.createServer(app);
 const io = socketIo(server, {
-  cors: corsOptions 
+  cors: corsOptions,
 });
 io.on('connection', (socketConnection) => {
   console.log('client connected');
-  socket=socketConnection;
+  socket = socketConnection;
   socket.on('disconnect', () => {
     console.log('Client disconnected');
   });
 });
-
 
 async function connect() {
   try {
@@ -103,7 +103,6 @@ app.use(auth(config));
 
 app.set('views', './views');
 app.set('view engine', 'ejs');
-
 
 app.get(['', '/home'], async (req, res) => {
   if (req.oidc.isAuthenticated()) {
@@ -234,6 +233,15 @@ app.get('/get-ngo-events', async (req, res) => {
   );
   res.json(eventsArr);
 });
+app.get('/get-events', async (req, res) => {
+  let eventsArr = [];
+  await NgoModel.find().then((ngos) => {
+    ngos.forEach((ngo) => {
+      eventsArr = [...eventsArr, ...ngo.events];
+    });
+  });
+  res.json(eventsArr);
+});
 
 app.put('/add-user-group/:group', async (req, res) => {
   const group = JSON.parse(req.params.group);
@@ -275,52 +283,13 @@ app.post('/add-ngo-event/:event', async (req, res) => {
       { $push: { events: event } }
     ).then(() => console.log('Added event'));
     res.status(200).send('Event created');
-
-
-app.put('/add-user-group/:group', async (req, res) => {
-  const group = JSON.parse(req.params.group);
-  const locationInfo = req.oidc.user.email;
-  let userGroups = 0;
-  await UserModel.findOne({ email: locationInfo }).then((user) => {
-    userGroups = user.groups;
-  });
-  if (userGroups.find((userGroup) => userGroup.name == group.name)) {
-    console.log('Exists already');
-  } else {
-    await UserModel.findOneAndUpdate(
-      { email: locationInfo },
-      { $push: { groups: group } }
-    ).then(() => console.log('Added group'));
-
   }
 });
 
 app.put('/add-user-ngo/:ngo', async (req, res) => {
-
-  const ngo = JSON.parse(req.params.ngo);
-  const locationInfo = req.oidc.user.email;
-  let userNgos = 0;
-  await UserModel.findOne({ email: locationInfo }).then((user) => {
-    userNgos = user.ngos;
-  });
-  if (userNgos.find((userNgo) => userNgo.title == ngo.title)) {
-    console.log('Exists already');
-  } else {
-    await UserModel.findOneAndUpdate(
-      { email: locationInfo },
-      { $push: { ngos: ngo } }
-    ).then(() => console.log('Added ngo'));
-  }
-});
-
-app.post('/', async (req, res) => {
-  const prompt = req.body.prompt.trim();
-
-
   try {
     const ngo = JSON.parse(req.params.ngo);
-    //console.log('Parsed NGO:', ngo);
-
+    console.log('Parsed NGO:', ngo);
     const locationInfo = req.oidc.user.email;
     let userNgos = [];
     await UserModel.findOne({ email: locationInfo }).then((user) => {
@@ -340,45 +309,50 @@ app.post('/', async (req, res) => {
       res.send('NGO added successfully');
     }
   } catch (error) {
-
     console.error('Error:', error);
     res.status(500).send('Internal Server Error');
   }
 });
 
-    //console.error('Error adding NGO:', error);
-    //res.status(500).send('Error adding NGO');
-  }
+app.post('/', async (req, res) => {
+  const prompt = req.body.prompt.trim();
 });
+
 const generationConfig = {
-  stopSequences: ["red"],
+  stopSequences: ['red'],
   maxOutputTokens: 5,
   temperature: 0.9,
   topP: 0.1,
   topK: 16,
 };
 
-const model = genAI.getGenerativeModel({ model: "MODEL_NAME",  generationConfig });
+const model = genAI.getGenerativeModel({
+  model: 'MODEL_NAME',
+  generationConfig,
+});
 
 app.post('/generate', async (req, res) => {
-  const { base64Image, prompt } = req.body
+  const { base64Image, prompt } = req.body;
   // console.log(base64Image, prompt);
   const imagePart = {
     inlineData: {
       data: base64Image,
-      mimeType: 'image/png'
+      mimeType: 'image/png',
     },
   };
   try {
-    let result
-    if(base64Image){
-      const model = genAI.getGenerativeModel({ model: "gemini-pro-vision"});
+    let result;
+    if (base64Image) {
+      const model = genAI.getGenerativeModel({ model: 'gemini-pro-vision' });
       result = await model.generateContentStream([prompt, imagePart]);
     } else {
-      const model = genAI.getGenerativeModel({ model: "gemini-pro" , generationConfig});
+      const model = genAI.getGenerativeModel({
+        model: 'gemini-pro',
+        generationConfig,
+      });
       result = await model.generateContentStream(prompt);
     }
-    
+
     let text = '';
     for await (const chunk of result.stream) {
       const chunkText = chunk.text();
@@ -395,10 +369,9 @@ app.post('/generate', async (req, res) => {
     if (socket) {
       socket.disconnect();
     }
-    res.status(200).json({message:"success"});
+    res.status(200).json({ message: 'success' });
   } catch (err) {
     console.error('Error generating content:', err.message);
     res.status(500).json({ error: 'Error generating content' });
   }
 });
-
