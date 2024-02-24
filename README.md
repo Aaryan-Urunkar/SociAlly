@@ -93,6 +93,7 @@
 * CSS
 * JS
 * Express
+* MongoDB
  
 
 <p align="right">(<a href="#readme-top">Back To Top</a>)</p>
@@ -124,6 +125,16 @@ node.js and npm should be installed.
    ```sh
    npm install
    ```
+3. Enter .env variables
+   ```sh
+   Atuh0:- SECRET, BASEURL, CLIENTID, ISSUER
+   MongoDB:- MONGOPASS
+   Gemini bot:- API_KEY
+   ```
+5. Run server
+   ```sh
+   npm start
+   ```
 
 
 <p align="right">(<a href="#readme-top">Back To Top</a>)</p>
@@ -145,7 +156,7 @@ node.js and npm should be installed.
 ## Roadmap
 
 - [x] Transition to nodejs/express
-- [ ] Auto API updates to get new NGO activites by collaborating with NGO's
+- [x] Auto API updates to get new NGO activites by collaborating with NGO's
 - [x] Full account authentication
 - [ ] Reward System and Leaderboard to work.
       
