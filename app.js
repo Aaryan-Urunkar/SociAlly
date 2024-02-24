@@ -263,7 +263,7 @@ app.put('/add-user-group/:group', async (req, res) => {
 app.post('/add-ngo-event/:event', async (req, res) => {
   const event = JSON.parse(req.params.event);
   //Formating date and time
-  event.date = lightFormat(new Date(event.date), 'dd-MM-yyyy');
+  event.date = lightFormat(new Date(event.date), 'yyyy-MM-dd');
   const dateArray = event.time.split(':');
   event.time = lightFormat(
     new Date(2000, 1, 1, dateArray[0], dateArray[1]),

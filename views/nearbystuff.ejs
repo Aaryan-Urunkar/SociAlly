@@ -152,7 +152,6 @@
           return eventsArr;
         };
         const createEvent = (title, description, date, location, time) => {
-          console.log(description);
           const gridContainer = document.querySelector('.grid-container');
           const gridItem = document.createElement('div');
           gridItem.classList.add('grid-item');
@@ -191,11 +190,19 @@
       }
 
       function getInfo(e) {
-        let h2Text = e.target.querySelector('h2').innerText;
-        let pText = e.target.querySelector('p').innerText;
-        let date = e.target.getAttribute('data-date');
-        let location = e.target.getAttribute('data-location');
-        let time = e.target.getAttribute('data-time');
+        //To prevent a bug where if you click on the p or h2 it considers it as the target
+        let gridItem = e.target;
+        if (gridItem.nodeName == 'P') {
+          gridItem = e.target.parentElement;
+        }
+        if (gridItem.nodeName == 'H2') {
+          gridItem = e.target.parentElement;
+        }
+        let h2Text = gridItem.querySelector('h2').innerText;
+        let pText = gridItem.querySelector('p').innerText;
+        let date = gridItem.getAttribute('data-date');
+        let location = gridItem.getAttribute('data-location');
+        let time = gridItem.getAttribute('data-time');
         localStorage.setItem('h2Text', h2Text);
         localStorage.setItem('pText', pText);
         localStorage.setItem('targetLoc', location);
