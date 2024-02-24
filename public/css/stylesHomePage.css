@@ -296,6 +296,26 @@ header h2 {
   display: flex;
   list-style: none;
 }
+.chatbox {
+  overflow-y: auto; 
+  padding-bottom: 20px; 
+}
+.chatbox-container {
+  padding-bottom: 60px;
+}
+
+.chatbox {
+  overflow-y: auto; 
+}
+
+.chat {
+  margin-bottom: 10px; 
+}
+
+.chat {
+  margin-bottom: 10px;
+}
+
 .chatbot .chatbox .outgoing {
   margin: 20px 0;
   justify-content: flex-end;
@@ -325,6 +345,14 @@ header h2 {
   font-size: 0.95rem;
   background: #3e7373;
 }
+.uploaded-image img {
+  max-width: 100%;
+  max-height: 150px; 
+  display: block;
+  margin-top: 10px;
+}
+
+
 .chatbot .chatbox .incoming p {
   border-radius: 0px 10px 10px 10px;
 }
@@ -352,8 +380,19 @@ header h2 {
   margin-bottom: 10px; 
 }
 .chat.outgoing {
-  justify-content: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; 
+  text-align: right; 
 }
+
+.chat.outgoing .message {
+  margin-top: 5px; 
+}
+.chat.outgoing img {
+  border-radius: 10px;
+}
+
 
 .chat.incoming .message {
   background-color: #fff
