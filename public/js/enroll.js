@@ -31,9 +31,14 @@ applyButton.addEventListener('click', async () => {
     localStorage.getItem('targetTime'),
     localStorage.getItem('targetLoc')
   );
+
   const data = JSON.stringify(newNgo);
   console.log(data);
   await fetch(`/add-user-ngo/${data}`, {
     method: 'PUT',
-  }).catch((error) => console.error(error));
+  })
+    .then(() => {
+      location.href = '/finalPage';
+    })
+    .catch((error) => console.error(error));
 });

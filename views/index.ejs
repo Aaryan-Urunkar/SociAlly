@@ -187,17 +187,7 @@
         loginOptions.style.display="flex";
       }
 
-      document.addEventListener("DOMContentLoaded", function() {
-         const chatbotTogglers = document.querySelectorAll(".chatbot-toggler");
-         const chatbot = document.querySelector(".chatbot");
-      
-         chatbotTogglers.forEach(function(toggler) {
-            toggler.addEventListener("click", function() {
-              chatbot.classList.toggle("show-chatbot");
-              document.body.classList.toggle("show-chatbot");
-            });
-         });
-      });
+    
 
       const fetchButton = document.getElementById("fetchButton");
       const contentDiv = document.getElementById("content");
