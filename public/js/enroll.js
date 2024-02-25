@@ -4,7 +4,6 @@ window.onload = function () {
   let location = localStorage.getItem('targetLoc');
   let time = localStorage.getItem('targetTime');
   let date = localStorage.getItem('targetDate');
-  console.log(h2Text, pText, location, time, date);
   if (h2Text && pText && location && time && date) {
     document.getElementById('targetH1').innerText = h2Text;
     document.getElementById('targetP').innerText = pText;
@@ -33,7 +32,6 @@ applyButton.addEventListener('click', async () => {
   );
 
   const data = JSON.stringify(newNgo);
-  console.log(data);
   await fetch(`/add-user-ngo/${data}`, {
     method: 'PUT',
   })
